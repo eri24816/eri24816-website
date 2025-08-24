@@ -1,0 +1,10 @@
+{{ define "main" }}
+  <a href="{{ .Parent.RelPermalink }}">{{ .Parent.Title }} ></a>
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  <div class="gallery">
+    {{ range .Pages }}
+      {{ partial "card.html" . }}
+    {{ end }}
+  </div>
+{{ end }}

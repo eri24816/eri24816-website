@@ -1,0 +1,45 @@
+<!-- <h1>{{ site.Title }}</h1> -->
+
+<nav>
+    <div class="float-left">
+        <a href="/">{{ site.Title }}</a>
+    </div>
+    <div class="float-right">
+        <a href="/">Home</a>
+        <a href="/posts">Posts</a>
+        <a href="/tags">Tags</a>
+    </div>
+</nav>
+
+<style>
+    nav {
+        padding: 0px 10px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    nav .float-left {
+        display: flex;
+        list-style: none;
+        gap: 1rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav .float-right {
+        display: flex;
+        list-style: none;
+        gap: 1rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    nav a {
+        padding: 0.5rem;
+        transition: color 0.2s;
+    }
+
+    nav a:hover {
+        color: #ffffff;
+    }
+</style>

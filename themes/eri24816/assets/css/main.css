@@ -1,0 +1,56 @@
+@import 'card';
+
+*{
+  box-sizing: border-box;
+}
+
+:root {
+  --dark-glass: #000012a7;
+  --dark-glass-bright: #001129a7;
+}
+
+body {
+  background-color: #373737;
+  font-family: inter, sans-serif;
+  color: #c5c5c8;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  position: sticky;
+  margin-bottom: 1rem;
+  background-color: var(--dark-glass);
+}
+
+footer {
+  border-top: 1px solid #222;
+  margin-top: 1rem;
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+a {
+  color: rgb(197, 154, 81);
+  text-decoration: none;
+}
+
+a:hover {
+  color: rgb(252, 193, 83);
+}
+
+h1 {
+  margin-top: 0;
+}
+
+main {
+  padding: 0px 60px;
+}
+
+.gallery {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 40px;
+}

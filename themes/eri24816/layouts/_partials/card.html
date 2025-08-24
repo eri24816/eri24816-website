@@ -1,0 +1,19 @@
+<!-- a card that shows a preview of a poist and its image on top -->
+
+<a href="{{ .RelPermalink }}" class="card">
+    <div class="card-images">
+
+        {{ if .Params.image }}
+            <img class="card-img" src="{{ .Params.image }}" alt="{{ .Title }}">
+        {{ end }}
+        {{ range first 4 .Pages }}
+            <div class="masonry-item">
+                <img class="card-img" src="{{ .Params.image }}" alt="{{ .Title }}">
+            </div>
+        {{ end }}
+    </div>
+    <div class="card-content">
+        <h2>{{ .Title }}</h2>
+        <p>{{ .Summary }}</p>
+    </div>
+</a>

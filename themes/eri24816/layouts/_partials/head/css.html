@@ -1,0 +1,3 @@
+{{ $css := resources.Get "css/main.css" }}
+{{ $styles := $css | toCSS }}
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}">

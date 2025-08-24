@@ -1,0 +1,5 @@
+baseURL = 'https://eri24816.tw/'
+languageCode = 'en-us'
+title = 'Ping-Yi Chen'
+theme = "eri24816"
+
