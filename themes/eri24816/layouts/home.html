@@ -1,4 +1,7 @@
 {{ define "main" }}
+  <div class="visual-container">
+    {{ partial "visual.html" . }}
+  </div>
   {{ partial "hero.html" . }}
   {{ .Content }}
   {{ $categories := slice }}

@@ -19,7 +19,7 @@
             {{ .Site.Params.intro }}
         </p>
 
-        <div class="embed">
+        <div class="embed fade">
             {{ .Site.Params.embed | safeHTML }}
         </div>
 
@@ -27,7 +27,7 @@
     <div class="hero-right">
         <div class="highlights">
             <h2 class="highlights-title">Highlights</h2>
-            <div class="scroll-container">
+            <div class="scroll-container fade">
                 <button class="scroll-btn left" onclick="scrollHighlights(this, -1)">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" stroke-linecap="round"
@@ -57,6 +57,8 @@
         display: flex;
         gap: 3rem;
         align-items: center;
+        justify-content: space-between;
+        margin-top: 100px;
     }
 
     .hero-left {
@@ -65,9 +67,11 @@
         flex-direction: column;
         align-items: right;
         gap: 1rem;
+        max-width: 400px;
     }
 
     .hero-right {
+        max-width: 400px;
         flex: 1.5;
         min-width: 0;
     }
@@ -138,10 +142,20 @@
         height: 350px;
     }
 
-    .hero .card {
+    .highlights .card{
         min-width: 100%;
         width: 100%;
-        height: 350px;
+        height: 300px;
+    }
+
+    .fade {
+        opacity: 0.7;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .fade:hover {
+        opacity: 1;
+        transition: opacity 0.3s ease-in-out;
     }
 
 
@@ -189,6 +203,10 @@
 
     .scroll-btn.right {
         right: 0;
+    }
+
+    .highlights{
+        width: 500px;
     }
 
     .highlights-title {

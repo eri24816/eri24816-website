@@ -1,0 +1,181 @@
+<script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+<div class="visual" id="visual"></div>
+<div class="visual-overlay"></div>
+<script>
+    // a chaos game program with two functions
+    // Complex class in JS
+    class Complex {
+        constructor(re, im) {
+            this.re = re;
+            this.im = im;
+        }
+
+
+        static cis(len, theta) {
+            return new Complex(len * Math.cos(theta), len * Math.sin(theta));
+        }
+
+        static abs(a) {
+            return Math.sqrt(a.re * a.re + a.im * a.im);
+        }
+
+        static conjugate(a) {
+            return new Complex(a.re, -a.im);
+        }
+
+        static arg(a) {
+            return Math.atan2(a.im, a.re);
+        }
+
+        static add(a, b) {
+            return new Complex(a.re + b.re, a.im + b.im);
+        }
+
+        static multiply(a, b) {
+            return new Complex(a.re * b.re - a.im * b.im, a.re * b.im + a.im * b.re);
+        }
+
+        static divide(a, b) {
+            return new Complex(
+                (a.re * b.re + a.im * b.im) / (b.re * b.re + b.im * b.im),
+                (a.im * b.re - a.re * b.im) / (b.re * b.re + b.im * b.im)
+            );
+        }
+
+        static exp(a) {
+            return new Complex(Math.exp(a.re) * Math.cos(a.im),
+                Math.exp(a.re) * Math.sin(a.im));
+        }
+
+        static log(a) {
+            return new Complex(Math.log(Complex.abs(a)), Math.atan2(a.im, a.re));
+        }
+
+        static pow(a, b) {
+            return Complex.exp(Complex.multiply(Complex.log(a), b));
+        }
+
+        static sin(a) {
+            return new Complex(Math.sin(a.re) * Math.cosh(a.im),
+                Math.cos(a.re) * Math.sinh(a.im));
+        }
+
+        static cos(a) {
+            return new Complex(Math.cos(a.re) * Math.cosh(a.im),
+                -Math.sin(a.re) * Math.sinh(a.im));
+        }
+
+        static tan(a) {
+            return Complex.divide(Complex.sin(a), Complex.cos(a));
+        }
+
+        scale(s) {
+            return new Complex(this.re * s, this.im * s);
+        }
+
+
+    }
+
+
+    // Chaos game
+    let z = new Complex(1, 1);
+    let prevX = 0;
+    let prevY = 0;
+    let density;
+    let last_density = null;
+    let total_mass = 0;
+    let width = 0;
+    let height = 0;
+    let kind = 0;
+    function setup() {
+        let canvas = createCanvas(windowWidth, windowHeight);
+        canvas.parent('visual');
+        width = canvas.width;
+        height = canvas.height;
+        background(0);
+        colorMode(HSB);
+        console.log(width, height);
+        density = Array.from({ length: width }, () => Array(height).fill(0));
+        last_density = Array.from({ length: width }, () => Array(height).fill(0));
+        stroke(255);
+        pixelDensity(1);
+    }
+
+    let kinds = {
+        "0": {
+            "name": "Add and Multiply",
+            "functions": [
+                (z, mouse) => Complex.add(z, new Complex(2, 0)).scale(0.5),
+                (z, mouse) => Complex.multiply(z, mouse.scale(0.5))
+            ]
+        },
+        "1": {
+            "name": "Julia",
+            "functions": [
+                (z, mouse) => Complex.pow(Complex.add(z,mouse.scale(-1)), new Complex(0.5, 0)).scale(-1),
+                (z, mouse) => Complex.pow(Complex.add(z,mouse.scale(-1)), new Complex(0.5, 0)),
+            ]
+        }
+    }
+
+    let n_kind = Object.keys(kinds).length;
+    function keyPressed(e) {
+        if (key == ' ') {
+            e.preventDefault();
+            kind = (kind + 1) % n_kind;
+        }
+        for (let i = 0; i < n_kind; i++) {
+            if (key == i) {
+                kind = i;
+            }
+        }
+    }
+
+    function draw() {
+        if (mouseX !== prevX || mouseY !== prevY) {
+            density = Array.from({ length: width }, () => Array(height).fill(0));
+            total_mass = 0;
+            background(0);
+        }
+        prevX = mouseX;
+        prevY = mouseY;
+
+        let mouse = new Complex((mouseX - width / 2) / 200.0, (mouseY - height / 2) / 200.0);
+        let n_functions = kinds[kind].functions.length;
+        let functions = kinds[kind].functions;
+        for (let i = 0; i < 700; i++) {
+            if (isNaN(z.re) || isNaN(z.im)) {
+                z = new Complex(random(2) - 1, random(2) - 1);
+            }
+
+            let f = functions[Math.floor(random(n_functions))];
+            z = f(z, mouse);
+
+            let x = Math.floor(z.re * 200 + width / 2);
+            let y = Math.floor(z.im * 200 + height / 2);
+            total_mass++;
+            if (x >= 0 && x < width && y >= 0 && y < height) {
+                density[x][y]++;
+            }
+        }
+
+        loadPixels();
+        for (let i = 0; i < width; i++) {
+            for (let j = 0; j < height; j++) {
+                if (last_density[i][j] == density[i][j]) {
+                    continue;
+                }
+                last_density[i][j] = density[i][j];
+                let d = 10 * density[i][j] / (100000 + total_mass) * width * height;
+                let c = color((d/(d+300)*40), max(0, 800 - d*d/500), d*0.7);
+                let idx = (i + j * width) * 4;
+                pixels[idx] = red(c);
+                pixels[idx + 1] = green(c);
+                pixels[idx + 2] = blue(c);
+                pixels[idx + 3] = 200;
+            }
+        }
+        updatePixels();
+    }
+
+</script>
