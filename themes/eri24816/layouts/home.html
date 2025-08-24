@@ -1,4 +1,5 @@
 {{ define "main" }}
+  {{ partial "hero.html" . }}
   {{ .Content }}
   {{ $categories := slice }}
   {{ range site.RegularPages }}
@@ -9,7 +10,7 @@
   
   {{ range $categories }}
     <div class="category-section">
-      <h2>{{ . }}</h2>
+      <a href="/categories/{{ . | urlize }}"><h2 class="capitalize">{{ . }}</h2></a>
       <div class="scroll-container">
         <button class="scroll-btn left" onclick="scrollCategory(this, -300)">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,7 +34,7 @@
   <style>
     .category-section {
       margin: 2rem 0;
-      height: 400px;
+      height: 350px;
     }
     .scroll-container {
       position: relative;

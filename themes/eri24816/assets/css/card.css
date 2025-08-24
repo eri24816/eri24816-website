@@ -5,16 +5,17 @@
   justify-content: center;
   overflow: hidden;
   width: 300px;
-  height: 300px;
+  height: 270px;
   background: linear-gradient(160deg, var(--dark-glass), var(--dark-glass-bright));
-  border-radius: 10px; }
+  border-radius: 6px; }
 
 .card:hover {
-  background: linear-gradient(160deg, var(--dark-glass-bright), var(--dark-glass)); }
+  background: var(--dark-glass-bright);
+}
 
 .card-content {
     padding: 10px;
-    height: 150px;
+    height: 120px;
 }
 
 .card,

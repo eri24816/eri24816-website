@@ -4,7 +4,7 @@ date: 2021-11-16T23:28:40+08:00
 draft: false
 image: https://i.imgur.com/LxKntZ0.jpg
 categories: visual
-tags: ["fractal","gallery","visual","Processing"]
+tags: ["fractal","gallery","visual","Processing","highlights"]
 summary: "複數平面好玩的地方是，每種運算都對應到某種空間變換:加法是平移，乘法是旋轉，冪是繞成n圈(像是一條橡皮筋綁兩圈)，指數是 xy 坐標和極座標的轉換。"
 ---
 
