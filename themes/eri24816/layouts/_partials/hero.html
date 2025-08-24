@@ -25,16 +25,37 @@
 
     </div>
     <div class="hero-right">
-
+        <div class="highlights">
+            <h2 class="highlights-title">Highlights</h2>
+            <div class="scroll-container">
+                <button class="scroll-btn left" onclick="scrollHighlights(this, -1)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <div class="cards-container">
+                    {{ range (where .Site.RegularPages "Params.tags" "intersect" (slice "highlights")) }}
+                    {{ partial "card.html" . }}
+                    {{ end }}
+                </div>
+                <button class="scroll-btn right" onclick="scrollHighlights(this, 1)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 6L15 12L9 18" stroke="white" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 <style>
     .hero {
-        max-width: 1200px;
+        max-width: 1000px;
         margin: 0 auto;
         padding: 2rem;
         display: flex;
-        gap: 2rem;
+        gap: 3rem;
         align-items: center;
     }
 
@@ -48,6 +69,7 @@
 
     .hero-right {
         flex: 1.5;
+        min-width: 0;
     }
 
     .profile-photo {
@@ -110,4 +132,74 @@
         gap: 0.5rem;
         align-items: center;
     }
+
+    .highlights {
+        margin: 2rem 0;
+        height: 350px;
+    }
+
+    .hero .card {
+        min-width: 100%;
+        width: 100%;
+        height: 350px;
+    }
+
+
+    .cards-container-inner::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scroll-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .cards-container {
+        position: relative;
+        display: flex;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+        gap: 2rem;
+        padding: 1rem;
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .cards-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scroll-btn {
+        position: sticky;
+        z-index: 1;
+        padding: 1rem;
+        border: none;
+        background: transparent;
+        color: white;
+        cursor: pointer;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .scroll-btn.left {
+        left: 0;
+    }
+
+    .scroll-btn.right {
+        right: 0;
+    }
+
+    .highlights-title {
+        margin-top: 0;
+        margin-left: 3rem;
+    }
 </style>
+
+<script>
+    function scrollHighlights(btn, amount) {
+        const container = btn.parentElement.querySelector('.cards-container');
+        container.scrollLeft += amount * container.clientWidth + 5;
+    }
+</script>

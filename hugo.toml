@@ -1,11 +1,11 @@
 baseURL = 'https://eri24816.tw/'
 languageCode = 'en-us'
-title = 'Ping-Yi Chen'
+title = 'Chen, Ping-Yi'
 theme = "eri24816"
 
 [params]
   name = "程品奕"
-  subtitle = "Ping-Yi Chen/eri24816"
+  subtitle = "Chen, Ping-Yi/eri24816"
   profile_photo = "https://i.imgur.com/EXHB80V.jpeg"
   email = "a931eric@gmail.com"
   github = "https://github.com/eri24816"

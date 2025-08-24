@@ -1,0 +1,12 @@
+.post {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.post img {
+  max-width: 80%;
+  height: auto;
+  margin: 1rem auto 2rem auto;
+  display: block;
+}

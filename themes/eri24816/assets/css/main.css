@@ -1,4 +1,5 @@
 @import 'card';
+@import 'post';
 
 *{
   box-sizing: border-box;
@@ -13,6 +14,12 @@
   --theme-color-muted: #4486ff99;
   --secondary-color: #ff9900;
   --secondary-color-muted: #ff990099;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--theme-color);
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 a {
