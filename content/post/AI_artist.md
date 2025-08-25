@@ -10,7 +10,7 @@ tags:
   - AI
 ---
 en
-聽說 AI 贏了某個畫畫比賽，引發了很多畫家的不滿。他們不認同 AI 可以當 artist。但是那幅 AI 畫的圖確實很漂亮，評審在不知道它是 AI 畫的之下給它第一名。
+聽說 AI 贏了某個畫畫比賽，引發了很多畫家的不滿。他們不認同 AI 可以當 artist。但是那幅 AI 畫的圖確實很漂亮，評審在不知道它是 AI 畫的之下給它第一名。 
 
 ![Image](https://i.imgur.com/tUOpAAx.png#centers)
 
