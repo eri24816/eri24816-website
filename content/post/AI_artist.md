@@ -1,10 +1,13 @@
 ---
-title: "對於 AI artist 的想法"
+title: 對於 AI artist 的想法
 date: 2022-09-06T15:21:01+08:00
 draft: false
-categories: "self"
-image: "https://i.imgur.com/JN9vybX.png"
-summary: "AI 在畫月亮時，想的並不是月亮的意境、月亮在文化中代表什麼；它只是很會畫、顏色配的很好、形狀恰到好處。"
+categories: self
+image: https://i.imgur.com/JN9vybX.png
+summary: AI 在畫月亮時，想的並不是月亮的意境、月亮在文化中代表什麼；它只是很會畫、顏色配的很好、形狀恰到好處。
+tags:
+  - highlights
+  - AI
 ---
 en
 聽說 AI 贏了某個畫畫比賽，引發了很多畫家的不滿。他們不認同 AI 可以當 artist。但是那幅 AI 畫的圖確實很漂亮，評審在不知道它是 AI 畫的之下給它第一名。
