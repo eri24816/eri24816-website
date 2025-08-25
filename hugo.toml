@@ -1,6 +1,6 @@
 baseURL = 'https://eri24816.tw/'
 languageCode = 'en-us'
-title = 'Chen, Ping-Yi'
+title = "eri24816's website"
 theme = "eri24816"
 
 [params]
