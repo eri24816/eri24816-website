@@ -9,6 +9,7 @@ theme = "eri24816"
   profile_photo = "https://i.imgur.com/EXHB80V.jpeg"
   email = "a931eric@gmail.com"
   github = "https://github.com/eri24816"
-  linkedin = "https://www.linkedin.com/in/eri24816/"
+  instagram = "https://www.instagram.com/eri24816/"
+  linkedin = "https://www.linkedin.com/in/eric-chen-789894239/"
   intro = "I like computer music, machine learning, and dogs."
   embed = '''<iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/5XJx2SFNvzx61hF4OX3Z32?utm_source=generator&amp;theme=0" width="90%" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>'''

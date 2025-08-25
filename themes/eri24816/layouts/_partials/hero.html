@@ -9,6 +9,7 @@
                 <div class="contact">
                     <a href="mailto:{{ .Site.Params.email }}"><i class="fas fa-envelope"></i></a>
                     <a href="{{ .Site.Params.github }}"><i class="fab fa-github"></i></a>
+                    <a href="{{ .Site.Params.instagram }}"><i class="fab fa-instagram"></i></a>
                     <a href="{{ .Site.Params.linkedin }}"><i class="fab fa-linkedin"></i></a>
                 </div>
             </div>
@@ -59,7 +60,9 @@
         align-items: center;
         justify-content: space-between;
         margin-top: 100px;
+        flex-wrap: wrap;
     }
+
 
     .hero-left {
         flex: 1;
@@ -73,8 +76,10 @@
     .hero-right {
         max-width: 400px;
         flex: 1.5;
-        min-width: 0;
+        min-width: 200px;
     }
+
+
 
     .profile-photo {
         width: 180px;
@@ -212,6 +217,25 @@
     .highlights-title {
         margin-top: 0;
         margin-left: 3rem;
+    }
+
+
+    @media (max-width: 800px) {
+        .hero {
+            flex-direction: column;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    
+        .hero-right {
+            max-width: 100%;
+            width: 100%;
+        }
+    
+        .highlights {
+            width: 100%;
+        }
+    
     }
 </style>
 
