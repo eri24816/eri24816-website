@@ -9,6 +9,7 @@ tags:
   - music
   - music-generation
   - web
+  - highlights
 categories: music
 series: 
 summary:
