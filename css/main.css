@@ -113,6 +113,10 @@ h1 {
 main {
   padding: 0px 60px; }
 
+@media (max-width: 800px) {
+  main {
+    padding: 0px 10px; } }
+
 .gallery {
   display: flex;
   flex-direction: row;
