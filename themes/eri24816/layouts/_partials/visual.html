@@ -1,6 +1,7 @@
 <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
 <div class="visual" id="visual"></div>
 <div class="visual-overlay"></div>
+<div class="visual-info" id="visual-info"></div>
 <script>
     // a chaos game program with two functions
     // Complex class in JS
@@ -27,20 +28,6 @@
             return Math.atan2(a.im, a.re);
         }
 
-        static add(a, b) {
-            return new Complex(a.re + b.re, a.im + b.im);
-        }
-
-        static multiply(a, b) {
-            return new Complex(a.re * b.re - a.im * b.im, a.re * b.im + a.im * b.re);
-        }
-
-        static divide(a, b) {
-            return new Complex(
-                (a.re * b.re + a.im * b.im) / (b.re * b.re + b.im * b.im),
-                (a.im * b.re - a.re * b.im) / (b.re * b.re + b.im * b.im)
-            );
-        }
 
         static exp(a) {
             return new Complex(Math.exp(a.re) * Math.cos(a.im),
@@ -52,7 +39,10 @@
         }
 
         static pow(a, b) {
-            return Complex.exp(Complex.multiply(Complex.log(a), b));
+            if (typeof b === 'number') {
+                b = new Complex(b, 0);
+            }
+            return Complex.exp(Complex.log(a).mult(b));
         }
 
         static sin(a) {
@@ -69,10 +59,43 @@
             return Complex.divide(Complex.sin(a), Complex.cos(a));
         }
 
-        scale(s) {
-            return new Complex(this.re * s, this.im * s);
+        mult(a) {
+            if (typeof a === 'number') {
+                return new Complex(this.re * a, this.im * a);
+            }
+            return new Complex(this.re * a.re - this.im * a.im, this.re * a.im + this.im * a.re);
         }
 
+        add(a) {
+            if (typeof a === 'number') {
+                return new Complex(this.re + a, this.im);
+            }
+            return new Complex(this.re + a.re, this.im + a.im);
+        }
+
+        sub(a) {
+            if (typeof a === 'number') {
+                return new Complex(this.re - a, this.im);
+            }
+            return new Complex(this.re - a.re, this.im - a.im);
+        }
+
+        div(b) {
+            if (typeof b === 'number') {
+                return new Complex(this.re / b, this.im / b);
+            }
+            return new Complex(
+                            (this.re * b.re + this.im * b.im) / (b.re * b.re + b.im * b.im),
+                            (this.im * b.re - this.re * b.im) / (b.re * b.re + b.im * b.im)
+                        );
+        }
+
+        pow(b) {
+            if (typeof b === 'number') {
+                b = new Complex(b, 0);
+            }
+            return Complex.exp(Complex.log(this).mult(b));
+        }
 
     }
 
@@ -99,43 +122,69 @@
         last_density = Array.from({ length: width }, () => Array(height).fill(0));
         stroke(255);
         pixelDensity(1);
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key==' ') {
+                e.preventDefault();
+                kind = (kind + 1) % n_kind;
+                return;
+            }
+            for (let i = 0; i < n_kind; i++) {
+                if (e.key == i) {
+                    kind = i;
+                }
+            }
+        });
     }
 
     let kinds = {
         "0": {
             "name": "Add and Multiply",
             "functions": [
-                (z, mouse) => Complex.add(z, new Complex(2, 0)).scale(0.5),
-                (z, mouse) => Complex.multiply(z, mouse.scale(0.5))
+                (z, mouse) => z.add(2).mult(0.5),
+                (z, mouse) => z.mult(mouse).mult(0.5)
             ]
         },
         "1": {
-            "name": "Julia",
+            "name": "Inverse Julia",
             "functions": [
-                (z, mouse) => Complex.pow(Complex.add(z,mouse.scale(-1)), new Complex(0.5, 0)).scale(-1),
-                (z, mouse) => Complex.pow(Complex.add(z,mouse.scale(-1)), new Complex(0.5, 0)),
+                (z, mouse) => z.add(mouse.mult(-1)).pow(0.5).mult(-1),
+                (z, mouse) => z.add(mouse.mult(-1)).pow(0.5),
+            ]
+        },
+        "2": {
+            "name": "Unnamed 1",
+            "functions": [
+                (z, mouse) => z.add(mouse).pow(0.9),
+                (z, mouse) => z.mult(Complex.cis(-0.5, 0.08)),
+            ]
+        },
+        "3": {
+            "name": "Unnamed 2",
+            "functions": [
+                (z, mouse) => z.mult(new Complex(-0.34, 0.65)),
+                (z, mouse) => Complex.exp(z).mult(mouse).pow(0.5),
             ]
         }
     }
 
     let n_kind = Object.keys(kinds).length;
-    function keyPressed(e) {
-        if (key == ' ') {
-            e.preventDefault();
-            kind = (kind + 1) % n_kind;
-        }
-        for (let i = 0; i < n_kind; i++) {
-            if (key == i) {
-                kind = i;
-            }
-        }
-    }
 
     function draw() {
         if (mouseX !== prevX || mouseY !== prevY) {
             density = Array.from({ length: width }, () => Array(height).fill(0));
             total_mass = 0;
             background(0);
+            let info = '';
+            let functions = kinds[kind].functions;
+            let name = kinds[kind].name;
+            info += name + ' (Space to change)<br>';
+            let mouse = new Complex((mouseX - width / 2) / 200.0, (mouseY - height / 2) / 200.0);
+            let mouse_string = `${mouse.re.toFixed(2)} + ${mouse.im.toFixed(2)}i`;
+            for (let i = 0; i < functions.length; i++) {
+                info += functions[i].toString().replace('(z, mouse) =>', `f${i+1}(z) = `).replace('mouse', mouse_string) + '<br>';
+            }
+            document.getElementById('visual-info').innerHTML = info;
         }
         prevX = mouseX;
         prevY = mouseY;
@@ -167,7 +216,7 @@
                 }
                 last_density[i][j] = density[i][j];
                 let d = 10 * density[i][j] / (100000 + total_mass) * width * height;
-                let c = color((d/(d+300)*40), max(0, 800 - d*d/500), d*0.7);
+                let c = color((d/(d+450)*70), max(0, 800 - d*d/500), d*0.7);
                 let idx = (i + j * width) * 4;
                 pixels[idx] = red(c);
                 pixels[idx + 1] = green(c);

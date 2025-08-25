@@ -43,9 +43,13 @@ body {
 }
 
 header {
-  position: sticky;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
   margin-bottom: 1rem;
-  background-color: var(--dark-glass);
+  background-color: #303030;
 }
 
 footer {
@@ -108,4 +112,16 @@ main {
   height: 100%;
   z-index: 1;
   background: linear-gradient(to bottom, #00000000 80%, var(--background-color) 100%);
+}
+
+.visual-info{
+  font-family: "Consolas", "Courier New", monospace;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 100;
+  padding: 10px;
+  font-size: 12px;
+  line-height: 1.2;
+  color: var(--text-color);
 }
