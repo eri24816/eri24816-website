@@ -9,7 +9,7 @@ tags:
   - music
   - fractal
   - generative-art
-categories: Uncategorized
+categories: future projects
 series: 
 summary:
 ---
