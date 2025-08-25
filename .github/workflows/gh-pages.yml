@@ -6,7 +6,7 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
     steps:
@@ -18,14 +18,8 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.124.1'
+          hugo-version: '0.148.2'
           extended: true
-
-      - name: Install dependencies (hugo)
-        run: npm install
-
-      - name: Install dependencies (chunky-poster)
-        run: cd themes/chunky-poster && yarn install
 
       - name: Build
         uses: nick-fields/retry@v3
