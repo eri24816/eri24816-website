@@ -16,3 +16,4 @@ summary:
 ---
 ![](https://i.imgur.com/6oABwUs.jpeg)
 
+This is my first attempt to build a user interface for music generation.

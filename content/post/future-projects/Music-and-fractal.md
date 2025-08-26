@@ -19,4 +19,4 @@ Given a fractal on a 2d plane, we can view each vertical slice of pixels as a wa
 
 The waveform option feels more reasonable because it more likely to produce non-uniform characteristics on the sound, such as varying intensities across frequencies. However, it will be tricky to connect each waveform across time.
 
-Another possibility is reading a fractal as symbolic music. We can sample through the fractal in a quantized grid 
+Another possibility is reading a fractal as symbolic music. By sampling through the fractal in a quantized grid, we can get a piano roll. But will that sound good? Or, we can view that as some kind of feature vectors over time?
