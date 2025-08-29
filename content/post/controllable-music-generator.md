@@ -18,7 +18,7 @@ summary:
 
 After 3 years of training music generation model and interacting with them through cli, this is my first attempt to build a user interface for them.
 
- are four controllable features: chord, velocity, note density, and polyphony, where chord can be set in a per-beat granularity, and other features can be set per bar.
+There are four controllable features: chord, velocity, note density, and polyphony, where chord can be set in a per-beat granularity, and other features can be set per bar.
 
 The underlying model is a transformer trained to generate symbolic music auto-regressively, with a dataset consisting piano performances of pop music.
 
