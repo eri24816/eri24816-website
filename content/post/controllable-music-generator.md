@@ -16,7 +16,7 @@ summary:
 ---
 ![](https://i.imgur.com/6oABwUs.jpeg)
 
-After 3 years of training music generation model and interacting with them through cli, this is my first attempt to build a user interface for them.
+After 3 years of training music generation models and interacting with them through cli, this is my first attempt to build a user interface for them.
 
 
 
