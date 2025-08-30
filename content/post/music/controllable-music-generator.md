@@ -18,7 +18,7 @@ summary:
 
 After 3 years of training music generation models and interacting with them through CLI, this is my first attempt to build a user interface for them. Playing with it feels really great, it feels like the model is actually usable.
 
-It has a piano roll where you can make music. When needed, you can ask AI to generate a bar for you. It will offer multiple options for your choice, and you can also edit it. Occasionally, there emerges music that sounds amazingly good but you didn't think of, that kind of accident is the main value of this AI in music composition.
+It has a piano roll where you can make music. When needed, you can ask AI to generate a bar for you. It will offer multiple options for your choice, and you can also edit its generation. Occasionally, there emerges music that sounds amazingly good but you didn't think of, that kind of accident is the main value of this AI in music composition.
 
 
 
