@@ -18,7 +18,7 @@ summary:
 
 After 3 years of training music generation models and interacting with them through CLI, this is my first attempt to build a user interface for them. Playing with it feels really great, it feels like the model is actually usable.
 
-It has a piano roll 
+It has a piano roll where you can make music. When needed, you can ask AI to generate a bar for you. It will offer multiple options for your choice, and you can also edit them.
 
 
 There are four controllable features: chord, velocity, note density, and polyphony, where chord can be set in a per-beat granularity, and other features can be set per bar.
