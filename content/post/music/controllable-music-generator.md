@@ -20,6 +20,7 @@ After 3 years of training music generation models and interacting with them thro
 
 It has a piano roll where you can make music. When needed, you can ask AI to generate a bar for you. It will offer multiple options for your choice, and you can also edit its generation. Occasionally, there emerges music that sounds amazingly good but you didn't think of, that kind of accident is the main value of this AI in music composition.
 
+The reason I assume that the AI is only an auxiliary providing inspirations and that it's still human composing music is that the AI has no ability to 
 
 
 There are four controllable features: chord, velocity, note density, and polyphony, where chord can be set in a per-beat granularity, and other features can be set per bar.
