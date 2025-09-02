@@ -1,4 +1,5 @@
 <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <div class="visual" id="visual"></div>
 <div class="visual-overlay"></div>
 <div class="visual-info" id="visual-info"></div>
@@ -136,13 +137,16 @@
             }
         });
     }
-
     let kinds = {
         "0": {
             "name": "Add and Multiply",
             "functions": [
                 (z, mouse) => z.add(2).mult(0.5),
                 (z, mouse) => z.mult(mouse).mult(0.5)
+            ],
+            "function_names": [
+                `f_1(z) = \\tfrac{1}{2}(z + 2)`,
+                `f_2(z) = \\tfrac{1}{2} mouse z`
             ]
         },
         "1": {
@@ -150,6 +154,10 @@
             "functions": [
                 (z, mouse) => z.add(mouse.mult(-1)).pow(0.5).mult(-1),
                 (z, mouse) => z.add(mouse.mult(-1)).pow(0.5),
+            ],
+            "function_names": [
+                `f_1(z) = -\\sqrt{z - mouse}`,
+                `f_2(z) = \\sqrt{z - mouse}`
             ]
         },
         "2": {
@@ -157,6 +165,10 @@
             "functions": [
                 (z, mouse) => z.add(mouse).pow(0.9),
                 (z, mouse) => z.mult(Complex.cis(-0.5, 0.08)),
+            ],
+            "function_names": [
+                `f_1(z) = (z + mouse)^{0.9}`,
+                `f_2(z) = z  \\mathrm{cis}(-0.5,\\,0.08)`
             ]
         },
         "3": {
@@ -164,9 +176,14 @@
             "functions": [
                 (z, mouse) => z.mult(new Complex(-0.34, 0.65)),
                 (z, mouse) => Complex.exp(z).mult(mouse).pow(0.5),
+            ],
+            "function_names": [
+                `f_1(z) = (-0.34 + 0.65i)z`,
+                `f_2(z) = \\sqrt{mouse e^{z}}`
             ]
         }
     }
+
 
     let n_kind = Object.keys(kinds).length;
 
@@ -178,13 +195,15 @@
             let info = '';
             let functions = kinds[kind].functions;
             let name = kinds[kind].name;
+            let function_names = kinds[kind].function_names;
             info += name + ' (Space to change)<br>';
             let mouse = new Complex((mouseX - width / 2) / 200.0, (mouseY - height / 2) / 200.0);
-            let mouse_string = `${mouse.re.toFixed(2)} + ${mouse.im.toFixed(2)}i`;
+            let mouse_string = `(${mouse.re.toFixed(2)} + ${mouse.im.toFixed(2)}i)`;
             for (let i = 0; i < functions.length; i++) {
-                info += functions[i].toString().replace('(z, mouse) =>', `f${i+1}(z) = `).replace('mouse', mouse_string) + '<br>';
+                info += '\\(' + function_names[i].replace('mouse', mouse_string) + '\\)' + '<br>';
             }
             document.getElementById('visual-info').innerHTML = info;
+            MathJax.typesetPromise();
         }
         prevX = mouseX;
         prevY = mouseY;
