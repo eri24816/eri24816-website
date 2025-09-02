@@ -40,17 +40,16 @@ So, after building the overall architecture, we spent most of our time experimen
 
 ## Implementing the basic modules
 
-Our implementation of reverb filter consists of several modules (delay line, low pass filter, etc.)，每each is a multi channel causal filter. A large mo
+Our reverb filter implementation is built from several modules (delay line, low-pass filter, etc.), each of which is a multi-channel causal filter. A module can itself contain smaller sub-modules, with the reverb filter being the top-level module.
 
-每種模組皆有實作方法 
+Each module is a class which implements
 
 ```c++
 float* update(float* input)
 ```
-在 VST 的每一個 time step，這個方法都會收到一個 float 陣列作為輸入，計算完後輸出一個 float 陣列。大部分的模組都具有 memory，所以 update() 方法不是 time independent 的。
+In each time step of calculation, this method receives a float array as input, do calculations, and returns another float array as output. Most modules maintain internal state, making the `update` function not pure.
 
-## DelayLine
-DelayLine 的功能單純就是在收到訊號後延遲數個 sample 的時間再輸出，在頻域上的作用為$z^{-n}$。用 std::queue 就可以簡單地把它實做出來。
+## DelayLine 的功能單純就是在收到訊號後延遲數個 sample 的時間再輸出，在頻域上的作用為$z^{-n}$。用 std::queue 就可以簡單地把它實做出來。
 ```c++
 float* update(float* input) override{
     for (int i = 0; i < inputDim; i++) {
