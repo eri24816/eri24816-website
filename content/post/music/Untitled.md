@@ -25,20 +25,16 @@ https://ccrma.stanford.edu/~jos/pasp/Zita_Rev1.html
 
 First, the 2 input channels are split into 8 channels by a **2×8 matrix**, then sent into a loop. Inside the loop, all 8 channels are processed in parallel. The signal passes sequentially through four basic filters: **all pass**, **feedback matrix**, **lowpass**, and **delay line**, and then repeats. After the feedback matrix, there’s an output path that exits the loop, going through an **8×2 matrix** before being sent back to 2 output channels.
 
-Although the system seems easy to be implemented by implementing all basic components, the hard part lies in taking care these at the same time:
-1. good sound
-2. stability of the IIR
+Although the system looks straightforward (we “just” need to implement each basic module), the real difficulty lies in ensuring two aspects at the same time:
 
-This is because we use an IIR, which contains a loop and goes unstable if its parameters are tuned badly. If we used FIR, the problem wouldn't exist, but it requires more computation. So, after implementing the overall system, we spend a lot of time finding the best sounding parameters among those make 
+1. Producing good sound
+2. Maintaining IIR stability
 
-這看似簡單(我們只要把每個基本模組實做出來即可)，但困難點在於這兩項性質難以同時兼顧:
+This is because we used an **IIR** structure, which contains a feedback loop and becomes unstable if the parameters are not tuned carefully. With an **FIR**, stability wouldn’t be an issue, but it requires more computational cost.
 
-3. 產生的聲音好聽
-4. IIR的穩定性
+So, after building the overall architecture, we spent most of our time experimenting with parameters to achieve the best sound possible while keeping the IIR stable.
 
-這是因為我們使用的是帶有迴圈的 IIR，所以參數沒調好的話會不穩定 (unstable)。如果使用的是 FIR 則能免除這項困難，但是如果用 FIR 做 reverb，計算量會太大。所以在建好架構後，我們花了大半的時間在嘗試找出在 IIR 穩定的情況下，聲音最好聽的參數。
-
-## 各模組的實作
+## Implementing the basic modules
 
 在我們的實作中有很多種模組 (例如 DelayLine，LowPass)，每種模組都是一個多 channel 的 causal filter。一個大模組裡面可能包含數個小模組，而完整的 Reverb 本身就是一個最大的模組。
 
