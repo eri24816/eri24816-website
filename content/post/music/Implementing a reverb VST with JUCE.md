@@ -49,7 +49,8 @@ float* update(float* input)
 ```
 In each time step of calculation, this method receives a float array as input, do calculations, and returns another float array as output. Most modules maintain internal state, making the `update` function not pure.
 
-## DelayLine 的功能單純就是在收到訊號後延遲數個 sample 的時間再輸出，在頻域上的作用為$z^{-n}$。用 std::queue 就可以簡單地把它實做出來。
+## Delay line
+A delay line simply outputs the input after a delay of several samples. In the frequency domain, it acts as $z^{-n}$ . It can be easily implemented with `std::queue`.
 ```c++
 float* update(float* input) override{
     for (int i = 0; i < inputDim; i++) {
@@ -60,7 +61,7 @@ float* update(float* input) override{
     return outputBuffer;
 }
 ```
-後來為了減少耗時，我又自己刻了一個沒有用到 std::queue 的版本。
+Later, to reduce computation time, I wrote another version without using `std::queue`.
 ```c++
 float* update(float* input) override {
     for (int i = 0; i < inputDim; i++) {
@@ -72,8 +73,10 @@ float* update(float* input) override {
     return outputBuffer;
 }
 ```
-## Lowpass
-這個模組是一階 low pass filter，頻域上的作用為$(1-a)+az^{-1}$。
+## Low pass filter
+This module is a first-order low pass filter. It acts as$(1-a)+az^{-1}$.
+
+I imple
 
 實作的方法是把前一個輸出以某個權重加回當前的輸入，以此作為輸出。也就是在波型上做 smoothing。
 ```c++
