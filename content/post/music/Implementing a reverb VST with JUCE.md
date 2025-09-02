@@ -92,7 +92,7 @@ $$a=e^{-2\pi \frac{ \mathit{Cutoff}} {\mathit{SampleRate}}}$$
 
 ## All pass filter
 
-它是二階的 all pass filter。這是這個 project 最難做的 filter，我們必須由該 filter 應具有的性質，推導出實作的方法。
+A second order all pass filter。這是這個 project 最難做的 filter，我們必須由該 filter 應具有的性質，推導出實作的方法。
 
 二階 all pass filter 的 pole-zero plot 有兩個 poles 和兩個 zeros，且此 filter 的性質受到以下限制:
 1. 根據 complex conjugate root theorem，兩個 poles(zeros) 必共軛
