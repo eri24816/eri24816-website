@@ -115,7 +115,8 @@ h1 {
   margin-top: 0; }
 
 main {
-  padding: 0px 60px; }
+  padding: 0px 60px;
+  margin-top: 100px; }
 
 @media (max-width: 800px) {
   main {
@@ -160,10 +161,10 @@ main {
 .visual-info {
   font-family: "Consolas", "Courier New", monospace;
   position: absolute;
-  bottom: 0;
+  top: 40px;
   right: 0;
   z-index: 100;
   padding: 10px;
   font-size: 12px;
-  line-height: 1.2;
+  line-height: 1.5;
   color: var(--text-color); }
