@@ -11,7 +11,7 @@ tags:
   - audio
   - VST
 ---
-# Background
+## Background
 
 When something I’ve always wanted to do ends up being taught in a class, that class instantly becomes really attractive to me.
 
@@ -20,7 +20,7 @@ In the course _Analysis of Digital Music Signal_, each group of students used **
 This was the most fun course I’ve taken this year. I learned many interesting concepts, like the **z-transform**, how to read **zero-pole plots**, and how to do **OOP in C++** (while stepping into all kinds of pointer traps XD).
 
 
-# Overall Architecture
+## Overall Architecture
 
 We built the reverb filter based on this diagram from https://ccrma.stanford.edu/~jos/pasp/Zita_Rev1.html:
 
@@ -48,7 +48,7 @@ float* update(float* input)
 ```
 In each time step of calculation, this method receives a float array as input, do calculations, and returns another float array as output. Most modules maintain internal state, making the `update` function not pure.
 
-## Delay line
+### Delay line
 A delay line simply outputs the input after a delay of several samples. In the frequency domain, it acts as $z^{-n}$ . It can be easily implemented with `std::queue`.
 ```c++
 float* update(float* input) override{
@@ -72,7 +72,7 @@ float* update(float* input) override {
     return outputBuffer;
 }
 ```
-## Low pass filter
+### Low pass filter
 This module is a first-order low pass filter. It acts as$(1-a)+az^{-1}$.
 
 We implemented it by adding the previous output to the current input and using that as the current output, which effectively apply exponential smoothing on the waveform.
@@ -89,7 +89,7 @@ float* update(float* input) override {
 Parameter `a` is used to control the cutoff frequency. Their relationship is:
 $$a=e^{-2\pi \frac{ \mathit{Cutoff}} {\mathit{SampleRate}}}$$
 
-## All-pass filter
+### All-pass filter
 
 A second-order all-pass filter. This was the hardest filter to implement in the project—we had to derive it from the properties the filter must satisfy.
 
@@ -153,7 +153,7 @@ float* update(float* input)override {
 }
 ```
 
-## Comb
+### Comb
 Comb filter is simple because it is an FIR, no feedback.
 ```c++
 float* update(float* input)override {
@@ -166,7 +166,7 @@ float* update(float* input)override {
 
 (Actually we didn't use it in the reverb eventually. We used the all pass filter instead.)
 
-## Reverb
+### Reverb
 
 Reverb, the largest module, is a composition of all basic modules.
 
