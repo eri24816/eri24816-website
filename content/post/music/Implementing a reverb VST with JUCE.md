@@ -104,11 +104,10 @@ Combining these constraints means that a single set of parameters $(r, \theta)$ 
 
 ![Image](https://i.imgur.com/4HVI7Xu.png#centers)
 
-接下來就是用 $(r,θ)$ 來推出 IIR 的結構。
+Next, we use $(r, \theta)$ to derive the difference equation.
 
-設此 filter 的 response 為 $H(z)=\frac{P(z)}{Q(z)}$，$P$ 的兩根為 zero，$Q$ 的兩根為 pole。以此為出發點，P 和 Q 為:[^1][^2]
-[^1]: 國中學了但從未用過的根與係數終於在這裡用到了，覺得國中很浪費時間的心情稍稍下降了一點。
-[^2]:第一行的 $r^2$ 用於 normalize
+Let the filter’s response be $H(z) = \frac{P(z)}{Q(z)}$, where the two roots of $P$ are the zeros and the two roots of $Q$ are the poles. $P$ and $Q$ can be written as:[^1]
+[^1]:第一行的 $r^2$ 用於 normalize
 
 $$\begin{aligned}
 P(z) &= r^2(z-r^{-1}e^{iθ}) (z-r^{-1}e^{-iθ})  \\\\
