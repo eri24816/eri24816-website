@@ -1,18 +1,15 @@
 ---
-title: 
-date: 2025-09-02
-authors:
-  - eri24816
-image: /Pasted image 20241116182611.png
+title: Reverb plugin
+date: 2022-03-16T17:33:37+08:00
 draft: false
-tags: 
-categories: Uncategorized
-series: 
-summary:
----
+image: https://i.imgur.com/8qGh9bk.png
+categories: music
+summary: 我學到非常多好玩的觀念，像是 z transform、怎麼看 zero pole plot、如何用 C++ 來 OOP (踩各種指標的坑XD)。
+tags:
+  - highlights
+  - cpp
 ---
 
-Summary: 我學到非常多好玩的觀念，像是 z transform、怎麼看 zero pole plot、如何用 C++ 來 OOP (踩各種指標的坑XD)。
 ---
 一直想做的東西後來真的有課教我怎麼做，就會覺得那門課很吸引我。
 
