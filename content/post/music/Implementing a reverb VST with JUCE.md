@@ -106,8 +106,7 @@ Combining these constraints means that a single set of parameters $(r, \theta)$ 
 
 Next, we use $(r, \theta)$ to derive the filter's difference equation.
 
-Let the filter’s response be $H(z) = \frac{P(z)}{Q(z)}$, where the two roots of $P$ are the zeros and the two roots of $Q$ are the poles. $P$ and $Q$ can be written as:[^1]
-[^1]: $r^2$ 用於 
+Let the filter’s response be $H(z) = \frac{P(z)}{Q(z)}$, where the two roots of $P$ are the zeros and the two roots of $Q$ are the poles. $P$ and $Q$ can be written as:
 
 $$\begin{aligned}
 P(z) &= r^2(z-r^{-1}e^{iθ}) (z-r^{-1}e^{-iθ})  \\\\
@@ -136,7 +135,8 @@ Q(z)Y(z)&=P(z)X(z)\\\\
 Rearrange and get the following difference equation:
 $$y[n] = r^2 * x[n]-2r\cos(θ) * x[n-1]+x[n-2]+2r \cos(θ) * y[n-1]-r^2* y[n-2]$$
 
-其中，$x[n]$為目前輸入的 sample，$y[n]$為目前欲輸出的 sample。因為計算 $y[n]$ 會用到 4 個以前的值，所以此 filter 需要 4 條 delay line(或 4 個 memory)。實作如下:
+Here, $x[n]$ is the current input sample, and $y[n]$ is the current output sample. Because calculating $y[n]$ requires four previous values, this filter needs four memory slots. The implementation is as follows:
+
 ```c++
 float* update(float* input)override {
     for (int i =0;i<inputDim;i++) {
@@ -167,7 +167,7 @@ float* update(float* input)override {
 
 ### Reverb
 
-Reverb, the largest module, is a composition of all basic modules.
+Reverb, the ultimate module, is made by combining of all basic modules.
 
 ```c++
 float* update(float* input) override{
@@ -194,9 +194,9 @@ float* update(float* input) override{
 ```
 
 
-## 調整參數
+## Tweaking the parameters
 
-把所有 filter 組裝起來之後，我們遇到的第一個問題是跑了一段時間後數值很容易爆炸。這是因為在主迴圈中，如果有某個頻率的 amplitude response 超過 1，經過數次遞迴，那個頻率的強度就會指數發散。
+After assembling all the filters, the first problem we encountered was that the values could easily blow up after running for a while. This happens because, in the main loop, if the amplitude response at any frequency exceeds 1, that frequency’s intensity will grow exponentially over time.
 
 我們隨即調低迴圈的 feedback matrix 的值，使得 amplitude response 下降。這時又出現另一個問題:殘響時間不夠長。當迴圈的 amplitude response 小於 1 太多，經過數次遞迴，聲音就會快速衰減並消失。
 
