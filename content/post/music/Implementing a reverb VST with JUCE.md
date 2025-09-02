@@ -89,15 +89,18 @@ float* update(float* input) override {
 Parameter `a` is used to control the cutoff frequency. Their relationship is:
 $$a=e^{-2\pi \frac{ \mathit{Cutoff}} {\mathit{SampleRate}}}$$
 
-## All pass filter
+## All-pass filter
 
-A second order all pass filter。這是這個 project 最難做的 filter，我們必須由該 filter 應具有的性質，推導出實作的方法。
+A second-order all-pass filter. This was the hardest filter to implement in the project—we had to derive it from the properties the filter must satisfy.
 
-二階 all pass filter 的 pole-zero plot 有兩個 poles 和兩個 zeros，且此 filter 的性質受到以下限制:
-1. 根據 complex conjugate root theorem，兩個 poles(zeros) 必共軛
-2. 為了讓各頻率的 amplitude response 皆維持在 1，每個 pole 對單位圓的反演處必須有一個 zero，反之亦然
+The pole-zero plot of a second-order all-pass filter has two poles and two zeros, and its properties are constrained by the following:
 
-結合這兩項限制，代表我們只需要一組參數 $(r,θ)$ 來控制某一個 pole 的位置，即可以決定所有 pole 和 zero 的位置，也決定了這個二階 filter。
+1. According to the **complex conjugate root theorem**, the two poles (and the two zeros) must be complex conjugates.
+    
+2. To ensure the **amplitude response is 1 at all frequencies**, each pole must have a corresponding zero that is the inverse with respect to the unit circle, and vice versa.
+    
+
+Combining these constraints means that a single set of parameters $(r, \theta)$ is enough to determine the position of one pole, which in turn determines the positions of all poles and zeros—fully defining this second-order filter.
 
 ![Image](https://i.imgur.com/4HVI7Xu.png#centers)
 
