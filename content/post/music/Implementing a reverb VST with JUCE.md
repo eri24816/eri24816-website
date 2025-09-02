@@ -87,10 +87,10 @@ float* update(float* input) override {
 }
 ```
 
-Parameter `a` is used to control the cutoff frequency. They relatio
+Parameter `a` is used to control the cutoff frequency. Their relationship is:
 $$a=e^{-2\pi \frac{ \mathit{Cutoff}} {\mathit{SampleRate}}}$$
 
-## Allpass
+## All pass filter
 
 它是二階的 all pass filter。這是這個 project 最難做的 filter，我們必須由該 filter 應具有的性質，推導出實作的方法。
 
@@ -152,7 +152,7 @@ float* update(float* input)override {
 ```
 
 ## Comb
-Comb 超簡單，因為它是 FIR，沒有 feedback:
+Comb filter is simple because it is an FIR, no feedback.
 ```c++
 float* update(float* input)override {
     add(inputDim, input, delay.update(input));
@@ -162,11 +162,11 @@ float* update(float* input)override {
 
 ![Image](https://i.imgur.com/u0USmfH.png#centers)
 
-(但其實這個沒有用到，我們用 all pass 代替它了
+(Actually we didn't use it in the reverb eventually. We used the all pass filter instead.)
 
 ## Reverb
 
-Reverb 這個最大的 filter 就是把所有小 filter 組裝起來。
+Reverb, the largest module, is a composition of all basic modules.
 
 ```c++
 float* update(float* input) override{
