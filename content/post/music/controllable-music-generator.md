@@ -22,6 +22,7 @@ After 3 years of training music generation models and interacting with them thro
 
 It has a piano roll where you can make music. When needed, you can ask AI to generate a bar for you. It will offer multiple options for your choice, which can be further edited. Occasionally, there emerges music that sounds amazingly good but you didn't think of. I believe that kind of “accident” is the main value of this AI in music composition.
 
-I view the AI, in this interactive scenario, is only an auxiliary source of inspiration and that it's still human composing music because the AI has yet no ability to percept the global structure (I'm currently working on a new model which remedies that). You have to fix glitches in the generation, and sometimes you need to specify chords and velocities for each bar to increase the chance you get a reasonable outcome. You can also try asking it to generate all bars with no hints provided, and it will generate something locally reasonable but globally weird.
+I view the AI, in this interactive scenario, is only an auxiliary source of inspiration and that it's still human composing music because the AI has yet no ability to percept the global structure (I'm currently working on a new model to address that). You have to fix glitches in the generation, and sometimes you need to specify chords and velocities for each bar to increase the chance of a reasonable outcome. You can also try asking it to generate all bars without any hints, and it will generate something locally good but globally weird.
+
 
 
