@@ -104,10 +104,10 @@ Combining these constraints means that a single set of parameters $(r, \theta)$ 
 
 ![Image](https://i.imgur.com/4HVI7Xu.png#centers)
 
-Next, we use $(r, \theta)$ to derive the difference equation.
+Next, we use $(r, \theta)$ to derive the filter's difference equation.
 
 Let the filter’s response be $H(z) = \frac{P(z)}{Q(z)}$, where the two roots of $P$ are the zeros and the two roots of $Q$ are the poles. $P$ and $Q$ can be written as:[^1]
-[^1]:第一行的 $r^2$ 用於 normalize
+[^1]: $r^2$ 用於 
 
 $$\begin{aligned}
 P(z) &= r^2(z-r^{-1}e^{iθ}) (z-r^{-1}e^{-iθ})  \\\\
@@ -121,7 +121,7 @@ Q(z)&=(z-re^{iθ})(z-re^{-iθ})\\\\
 &=z^2-2r\cos(θ)z+r^2
 \end{aligned}$$
 
-令$X(z)$為輸入，$Y(z)$為輸出:
+Let $X(z)$ the input，$Y(z)$ the output:
 $$\begin{aligned}
 Y(z)&=H(z)X(z)\\\\
 &=\frac{P(z)}{Q(z)}X(z)\\\\
@@ -133,7 +133,7 @@ Q(z)Y(z)&=P(z)X(z)\\\\
 (1-2r\cos(θ)z^{-1}+r^2z^{-2})Y(z)&=(r^2-2r\cos(θ)z^{-1}+z^{-2})X(z)\\\\
 \end{aligned}$$
 
-經過移項，最後可以得到以下 difference equation:
+Rearrange and get the following difference equation:
 $$y[n] = r^2 * x[n]-2r\cos(θ) * x[n-1]+x[n-2]+2r \cos(θ) * y[n-1]-r^2* y[n-2]$$
 
 其中，$x[n]$為目前輸入的 sample，$y[n]$為目前欲輸出的 sample。因為計算 $y[n]$ 會用到 4 個以前的值，所以此 filter 需要 4 條 delay line(或 4 個 memory)。實作如下:
