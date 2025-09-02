@@ -76,9 +76,7 @@ float* update(float* input) override {
 ## Low pass filter
 This module is a first-order low pass filter. It acts as$(1-a)+az^{-1}$.
 
-I imple
-
-實作的方法是把前一個輸出以某個權重加回當前的輸入，以此作為輸出。也就是在波型上做 smoothing。
+We implemented it by adding the previous output to the current input and using that as the current output, which effectively apply exponential smoothing on the waveform.
 ```c++
 float* update(float* input) override {
     mult(inputDim, input, 1 - a);
@@ -87,11 +85,9 @@ float* update(float* input) override {
     copy(inputDim, feedback, input);
     return mult(inputDim, input,1);
 }
-// 這些 code 長得很像 assembly 是因為我沒有定義 vector 這個 class 和它的 operators，
-// 只有草率定義了幾個對 float 陣列的運算。我當時太懶了XD
 ```
 
-a 是調控 cutoff frequency 的參數，它們的關係是: 
+Parameter `a` is used to control the cutoff frequency. They relatio
 $$a=e^{-2\pi \frac{ \mathit{Cutoff}} {\mathit{SampleRate}}}$$
 
 ## Allpass
