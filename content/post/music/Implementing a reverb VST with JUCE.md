@@ -198,17 +198,19 @@ float* update(float* input) override{
 
 After assembling all the filters, the first problem we encountered was that the values could easily blow up after running for a while. This happens because, in the main loop, if the amplitude response at any frequency exceeds 1, that frequency’s intensity will grow exponentially over time.
 
-我們隨即調低迴圈的 feedback matrix 的值，使得 amplitude response 下降。這時又出現另一個問題:殘響時間不夠長。當迴圈的 amplitude response 小於 1 太多，經過數次遞迴，聲音就會快速衰減並消失。
+To address that, we then reduced the values in the loop’s feedback matrix to lower the amplitude response. This introduced another problem: the reverb time became too short. When the loop’s amplitude response is too far below 1, the signal decays quickly and disappears after a few iterations.
 
-也就是說，必須讓每種頻率的 amplitude response 都小於 1，但只能小一點點。
+That tells us the amplitude response at each frequency must be less than 1, but only slightly.
 
-後來我們找到的作法是:
+The approach we eventually adopted was:
 
-1. low pass 的 amplitude response 小於等於 1
-2. all pass 的 amplitude response 等於 1 (當然)
-3. feedback matrix 的每個 row 絕對值總和稍微小於 1 
+1. Make the low-pass filter’s amplitude response ≤ 1
+2. The sum of absolute values in each row of the feedback matrix is slightly less than 1
 
-這樣的話就可以保證不會爆炸了。原因如下:
-以最嚴格的情況來看，假設 low pass 和 all pass 的 amplitude response 都是 1，訊號從 feedback matrix 的輸出繞一圈回到 feedback matrix 前的 amplitude 增益就是 1，強度不變。而 feedback matrix 會將 8 個 channel 重新混合，feedback matrix 的每個 row 絕對值總和小於 1 這項限制保證了混合後的訊號不會因疊加而增強。
+This ensures the system won’t blow up. Here’s why:
 
-不過因為訊號繞了一圈後，會發生複雜的項位改變，就算 feedback matrix 每個 row 絕對值總和非常接近 1，訊號卻很容易因為破壞性疊加而有很大的衰減率。而且 VST 的 sample rate 非常高(例如44100Hz)，所以還是會有不到 1 秒聲音就幾乎不見的情況。後來我們對這個問題的解法是在 IIR 前串聯約 50ms 的 convolution (FIR) ，最終效果不錯。(暴力解XD)
+In the strictest case, assume both the low-pass and all-pass filters have an amplitude response of 1. Then, as the signal travels from the feedback matrix’s output back to its input, the amplitude gain is 1, so the signal strength remains unchanged. The feedback matrix mixes the 8 channels together, and the constraint that the sum of absolute values in each row is slightly less than 1 ensures that the mixed signal does not increase in amplitude due to addition.
+
+However, because the signal accumulates complex phase changes as it loops, even if the row sums are very close to 1, destructive interference can still cause significant decay. Moreover, the VST sample rate is very high (e.g., 44,100 Hz), so the sound can almost disappear in under a second.
+
+Our final solution was to insert about 50 ms of convolution (FIR) before the IIR. This brute-force approach worked well in practice.
