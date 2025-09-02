@@ -16,18 +16,21 @@ In the course _Analysis of Digital Music Signal_, each group of students used **
 This was the most fun course I’ve taken this year. I learned many interesting concepts, like the **z-transform**, how to read **zero-pole plots**, and how to do **OOP in C++** (while stepping into all kinds of pointer traps XD).
 
 
-## 整體架構
-下圖是我們一開始參考的架構。
+## Overall Architecture
+
+The diagram below shows the architecture we referenced.
 
 ![Image](https://i.imgur.com/gLgWwXH.jpg#center)
 https://ccrma.stanford.edu/~jos/pasp/Zita_Rev1.html
 
-首先，輸入的 2 個 channel 被一個 2\*8 matrix 分成 8 個 channel，接著進入迴圈。迴圈裡都是 8 個 channel 在跑，訊號會依序經過 allpass、feedback matrix、lowpass、delay line 四個基礎 filter，然後重複。在 feedback matrix 後面有一條脫離迴圈的輸出路徑，會經過一個 8\*2 的 matrix，輸出到 2 個 channel。
+First, the 2 input channels are split into 8 channels by a **2×8 matrix**, then sent into a loop. Inside the loop, all 8 channels are processed in parallel. The signal passes sequentially through four basic filters: **all pass**, **feedback matrix**, **lowpass**, and **delay line**, and then repeats. After the feedback matrix, there’s an output path that exits the loop, going through an **8×2 matrix** before being sent back to 2 output channels.
 
+Although the system seems easy to be implemented by implementing all basic components, the hard part lies in taking care these at the same time:
+1. 
 這看似簡單(我們只要把每個基本模組實做出來即可)，但困難點在於這兩項性質難以同時兼顧:
 
-1. 產生的聲音好聽
-2. IIR的穩定性
+2. 產生的聲音好聽
+3. IIR的穩定性
 
 這是因為我們使用的是帶有迴圈的 IIR，所以參數沒調好的話會不穩定 (unstable)。如果使用的是 FIR 則能免除這項困難，但是如果用 FIR 做 reverb，計算量會太大。所以在建好架構後，我們花了大半的時間在嘗試找出在 IIR 穩定的情況下，聲音最好聽的參數。
 
