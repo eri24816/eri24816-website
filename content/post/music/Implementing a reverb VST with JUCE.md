@@ -1,5 +1,5 @@
 ---
-title: Reverb plugin
+title: Implementing a reverb VST with JUCE
 date: 2022-03-16T17:33:37+08:00
 draft: false
 image: https://i.imgur.com/8qGh9bk.png
@@ -8,7 +8,11 @@ summary: 我學到非常多好玩的觀念，像是 z transform、怎麼看 zero
 tags:
   - highlights
   - cpp
+  - audio
+  - VST
 ---
+# Background
+
 When something I’ve always wanted to do ends up being taught in a class, that class instantly becomes really attractive to me.
 
 In the course _Analysis of Digital Music Signal_, each group of students used **JUCE** (a C++ framework for making VSTs) to build a VST effect. Our group made a **reverb**. The purpose of reverb is to add echoes to music, creating the feeling of being in a cathedral or concert hall.
@@ -16,7 +20,7 @@ In the course _Analysis of Digital Music Signal_, each group of students used **
 This was the most fun course I’ve taken this year. I learned many interesting concepts, like the **z-transform**, how to read **zero-pole plots**, and how to do **OOP in C++** (while stepping into all kinds of pointer traps XD).
 
 
-## Overall Architecture
+# Overall Architecture
 
 The diagram below shows the architecture we referenced.
 
@@ -36,7 +40,7 @@ So, after building the overall architecture, we spent most of our time experimen
 
 ## Implementing the basic modules
 
-在我們的實作中有很多種模組 (例如 DelayLine，LowPass)，每種模組都是一個多 channel 的 causal filter。一個大模組裡面可能包含數個小模組，而完整的 Reverb 本身就是一個最大的模組。
+Our implementation of reverb filter consists of several modules (delay line, low pass filter, etc.)，每each is a multi channel causal filter. A large mo
 
 每種模組皆有實作方法 
 
@@ -45,7 +49,7 @@ float* update(float* input)
 ```
 在 VST 的每一個 time step，這個方法都會收到一個 float 陣列作為輸入，計算完後輸出一個 float 陣列。大部分的模組都具有 memory，所以 update() 方法不是 time independent 的。
 
-### DelayLine
+## DelayLine
 DelayLine 的功能單純就是在收到訊號後延遲數個 sample 的時間再輸出，在頻域上的作用為$z^{-n}$。用 std::queue 就可以簡單地把它實做出來。
 ```c++
 float* update(float* input) override{
@@ -69,7 +73,7 @@ float* update(float* input) override {
     return outputBuffer;
 }
 ```
-### Lowpass
+## Lowpass
 這個模組是一階 low pass filter，頻域上的作用為$(1-a)+az^{-1}$。
 
 實作的方法是把前一個輸出以某個權重加回當前的輸入，以此作為輸出。也就是在波型上做 smoothing。
@@ -88,7 +92,7 @@ float* update(float* input) override {
 a 是調控 cutoff frequency 的參數，它們的關係是: 
 $$a=e^{-2\pi \frac{ \mathit{Cutoff}} {\mathit{SampleRate}}}$$
 
-### Allpass
+## Allpass
 
 它是二階的 all pass filter。這是這個 project 最難做的 filter，我們必須由該 filter 應具有的性質，推導出實作的方法。
 
@@ -149,7 +153,7 @@ float* update(float* input)override {
 }
 ```
 
-### Comb
+## Comb
 Comb 超簡單，因為它是 FIR，沒有 feedback:
 ```c++
 float* update(float* input)override {
@@ -162,7 +166,7 @@ float* update(float* input)override {
 
 (但其實這個沒有用到，我們用 all pass 代替它了
 
-### Reverb
+## Reverb
 
 Reverb 這個最大的 filter 就是把所有小 filter 組裝起來。
 
