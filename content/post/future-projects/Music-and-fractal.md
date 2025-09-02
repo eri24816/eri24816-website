@@ -13,7 +13,7 @@ categories: future projects
 series: 
 summary:
 ---
-Both music and fractals have multi-level structure. 
+Both music and fractals have multi-level structures. 
 This makes me think of two possible ways converting fractals into sound or music:
 
 Given a fractal on a 2d plane, we can view each vertical slice of pixels as a waveform or spectrum and scan over the fractal horizontally to produce a playable audio. It may require the fractal to be a real-valued map (instead of binary).
