@@ -4,7 +4,7 @@ date: 2022-03-16T17:33:37+08:00
 draft: false
 image: https://i.imgur.com/8qGh9bk.png
 categories: music
-summary: 
+summary: I learned many interesting concepts, like the **z-transform**, how to read **zero-pole plots**, and how to do **OOP in C++** (while stepping into all kinds of pointer traps XD).
 tags:
   - highlights
   - cpp
@@ -213,4 +213,4 @@ In the strictest case, assume both the low-pass and all-pass filters have an amp
 
 However, because the signal accumulates complex phase changes as it goes through the loop, even if the row sums are very close to 1, destructive interference can still cause significant decay. Moreover, the VST sample rate is very high (e.g., 44,100 Hz), so the sound can almost disappear in under a second.
 
-Our final solution was to add about 50 ms of convolution before the IIR. This brute-force approach worked well in practice.
+Finally, we find a solution, to add 50 ms of convolution before the IIR. This brute-force approach worked well in practice.
