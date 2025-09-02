@@ -4,7 +4,7 @@ date: 2022-03-16T17:33:37+08:00
 draft: false
 image: https://i.imgur.com/8qGh9bk.png
 categories: music
-summary: I learned many interesting concepts, like the **z-transform**, how to read **zero-pole plots**, and how to do **OOP in C++** (while stepping into all kinds of pointer traps XD).
+summary: About my first attempt at making an audio plugin and the math concepts I learned from it.
 tags:
   - highlights
   - cpp
@@ -13,7 +13,7 @@ tags:
 ---
 ## Background
 
-When something I’ve always wanted to do ends up being taught in a class, it feels so good.
+When something I’ve always wanted to do ends up being taught in a class, it feels really good.
 
 In the course _Analysis of Digital Music Signal_ in NCKU, each group of students used **JUCE** (a C++ framework for making VSTs) to build a VST effect. Our group made a **reverb**. The purpose of reverb is to add echoes to music, creating the feeling of being in a cathedral or concert hall.
 
