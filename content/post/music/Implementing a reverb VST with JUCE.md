@@ -4,7 +4,7 @@ date: 2022-03-16T17:33:37+08:00
 draft: false
 image: https://i.imgur.com/8qGh9bk.png
 categories: music
-summary: 我學到非常多好玩的觀念，像是 z transform、怎麼看 zero pole plot、如何用 C++ 來 OOP (踩各種指標的坑XD)。
+summary: 
 tags:
   - highlights
   - cpp
@@ -13,9 +13,9 @@ tags:
 ---
 ## Background
 
-When something I’ve always wanted to do ends up being taught in a class, that class instantly becomes really attractive to me.
+When something I’ve always wanted to do ends up being taught in a class, it feels so good.
 
-In the course _Analysis of Digital Music Signal_, each group of students used **JUCE** (a C++ framework for making VSTs) to build a VST effect. Our group made a **reverb**. The purpose of reverb is to add echoes to music, creating the feeling of being in a cathedral or concert hall.
+In the course _Analysis of Digital Music Signal_ in NCKU, each group of students used **JUCE** (a C++ framework for making VSTs) to build a VST effect. Our group made a **reverb**. The purpose of reverb is to add echoes to music, creating the feeling of being in a cathedral or concert hall.
 
 This was the most fun course I’ve taken this year. I learned many interesting concepts, like the **z-transform**, how to read **zero-pole plots**, and how to do **OOP in C++** (while stepping into all kinds of pointer traps XD).
 
@@ -211,6 +211,6 @@ This ensures the system won’t blow up. Here’s why:
 
 In the strictest case, assume both the low-pass and all-pass filters have an amplitude response of 1. Then, as the signal travels from the feedback matrix’s output back to its input, the amplitude gain is 1, so the signal strength remains unchanged. The feedback matrix mixes the 8 channels together, and the constraint that the sum of absolute values in each row is slightly less than 1 ensures that the mixed signal does not increase in amplitude due to addition.
 
-However, because the signal accumulates complex phase changes as it loops, even if the row sums are very close to 1, destructive interference can still cause significant decay. Moreover, the VST sample rate is very high (e.g., 44,100 Hz), so the sound can almost disappear in under a second.
+However, because the signal accumulates complex phase changes as it goes through the loop, even if the row sums are very close to 1, destructive interference can still cause significant decay. Moreover, the VST sample rate is very high (e.g., 44,100 Hz), so the sound can almost disappear in under a second.
 
-Our final solution was to insert about 50 ms of convolution (FIR) before the IIR. This brute-force approach worked well in practice.
+Our final solution was to add about 50 ms of convolution before the IIR. This brute-force approach worked well in practice.
