@@ -22,10 +22,9 @@ This was the most fun course I’ve taken this year. I learned many interesting 
 
 # Overall Architecture
 
-For the arc
+We built the reverb filter based on this diagram from https://ccrma.stanford.edu/~jos/pasp/Zita_Rev1.html:
 
 ![Image](https://i.imgur.com/gLgWwXH.jpg#center)
-
 
 First, the 2 input channels are split into 8 channels by a **2×8 matrix**, then sent into a loop. Inside the loop, all 8 channels are processed in parallel. The signal passes sequentially through four basic filters: **all pass**, **feedback matrix**, **lowpass**, and **delay line**, and then repeats. After the feedback matrix, there’s an output path that exits the loop, going through an **8×2 matrix** before being sent back to 2 output channels.
 
