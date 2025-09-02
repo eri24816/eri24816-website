@@ -35,7 +35,7 @@ Although the system looks straightforward (we “just” need to implement each 
 
 This is because we used an **IIR** structure, which contains a feedback loop and becomes unstable if the parameters are not tuned carefully. With an **FIR**, stability wouldn’t be an issue, but it requires more computational cost.
 
-So, after building the overall architecture, we spent most of our time experimenting with parameters to achieve the best sound possible while keeping the IIR stable.
+So, after coding it, we spent a long time experimenting with parameters to achieve the best sound possible while keeping the IIR stable.
 
 ## Implementing the basic modules
 
