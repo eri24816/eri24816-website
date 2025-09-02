@@ -9,11 +9,11 @@ tags:
   - highlights
   - cpp
 ---
-一直想做的東西後來真的有課教我怎麼做，就會覺得那門課很吸引我。
+When something I’ve always wanted to do ends up being taught in a class, that class instantly becomes really attractive to me.
 
-在「數位音樂訊號分析」這門課中，每組學生使用 JUCE(一個製作 VST 的 C++ 框架)來做一種 VST 效果器。我們這組做的是 reverb。Reverb 的功用是把音樂加上迴音，像是在大教堂或音樂廳的感覺。
+In the course _Analysis of Digital Music Signal_, each group of students used **JUCE** (a C++ framework for making VSTs) to build a VST effect. Our group made a **reverb**. The purpose of reverb is to add echoes to music, creating the feeling of being in a cathedral or concert hall.
 
-這門課是我這一年遇過最好玩的。我學到非常多好玩的觀念，像是 z transform、怎麼看 zero pole plot、如何用 C++ 來 OOP (踩各種指標的坑XD)。
+This was the most fun course I’ve taken this year. I learned many interesting concepts, like the **z-transform**, how to read **zero-pole plots**, and how to do **OOP in C++** (while stepping into all kinds of pointer traps XD).
 
 
 ## 整體架構
