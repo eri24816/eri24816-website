@@ -152,8 +152,8 @@ float* update(float* input)override {
 }
 ```
 
-### Comb
-Comb filter is simple because it is an FIR, no feedback.
+### Comb filter
+The comb filter is simple because it is an FIR, no feedback.
 ```c++
 float* update(float* input)override {
     add(inputDim, input, delay.update(input));
