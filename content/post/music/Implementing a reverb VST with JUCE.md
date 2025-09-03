@@ -4,7 +4,7 @@ date: 2022-03-16T17:33:37+08:00
 draft: false
 image: https://i.imgur.com/8qGh9bk.png
 categories: music
-summary: About my first attempt at making an audio plugin and the math concepts I learned from it.
+summary: My first attempt at making an audio plugin and the math concepts I learned from it.
 tags:
   - highlights
   - cpp
