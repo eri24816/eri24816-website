@@ -194,7 +194,7 @@ float* update(float* input) override{
 ```
 
 
-## Tweaking the parameters
+## Tweaking parameters
 
 After assembling all the filters, the first problem we encountered was that the values could easily blow up after running for a while. This happens because, in the main loop, if the amplitude response at any frequency exceeds 1, that frequency’s intensity will grow exponentially over time.
 
