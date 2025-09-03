@@ -75,7 +75,7 @@ float* update(float* input) override {
 ### Low pass filter
 This module is a first-order low pass filter. It acts as$(1-a)+az^{-1}$.
 
-We implemented it by adding the previous output to the current input and using that as the current output, which effectively apply exponential smoothing on the waveform.
+We implemented it by adding the previous output to the current input and using that as the current output, which applies exponential smoothing on the waveform.
 ```c++
 float* update(float* input) override {
     mult(inputDim, input, 1 - a);
