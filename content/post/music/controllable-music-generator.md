@@ -1,5 +1,5 @@
 ---
-title: My first music generator application
+title: Music generator application
 date: 2025-08-24
 authors:
   - eri24816
