@@ -56,7 +56,7 @@ $$y[n] = r^2 * x[n]-2r\cos(θ) * x[n-1]+x[n-2]+2r \cos(θ) * y[n-1]-r^2* y[n-2]$
 </span></span><span style=display:flex><span>    }
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> output;
 </span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=comb>Comb</h3><p>Comb filter is simple because it is an FIR, no feedback.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#66d9ef>float</span><span style=color:#f92672>*</span> <span style=color:#a6e22e>update</span>(<span style=color:#66d9ef>float</span><span style=color:#f92672>*</span> input)<span style=color:#66d9ef>override</span> {
+</span></span></code></pre></div><h3 id=comb-filter>Comb filter</h3><p>The comb filter is simple because it is an FIR, no feedback.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#66d9ef>float</span><span style=color:#f92672>*</span> <span style=color:#a6e22e>update</span>(<span style=color:#66d9ef>float</span><span style=color:#f92672>*</span> input)<span style=color:#66d9ef>override</span> {
 </span></span><span style=display:flex><span>    add(inputDim, input, delay.update(input));
 </span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> input;
 </span></span><span style=display:flex><span>}
