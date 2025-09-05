@@ -183,8 +183,9 @@ Notice that we have to calculate $u(x=0.05,t)$ for each rendering step. Recall t
 $$
 \begin{align}
 u(x,t) &= \sum_n \left( a_n \cos(\omega_nt) + b_n \sin(\omega_n t) \right) \sin\left(k_nx\right)
-\end{align}
+\end{align},
 $$
+which means we need to expensively calculate $\cos(\omega_nt)$ and $\sin(\omega_n t)$ for each $n$ and each rendering step. Because the simulation uses a fixed time increment, 
 
 ```c++
 // String.cpp
