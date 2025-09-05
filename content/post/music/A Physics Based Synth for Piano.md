@@ -172,5 +172,30 @@ void String::applyImpulse(float x, float J)
 }
 ```
 
-## Optimization: Vectorized Operations
+## Optimization
+
+### Fast Successive Sin and Cos
+
+```c++
+	class FastSuccessiveSinCos {
+	public:
+		FastSuccessiveSinCos(__m256 x, __m256 d, float calculateExactInterval=30)
+		{
+			this->calculateExactInterval = calculateExactInterval;
+			this->x = x;
+			this->d = d;
+			sinX = _mm256_sin_ps(this->x);
+			cosX = _mm256_cos_ps(this->x);
+			sinD = _mm256_sin_ps(this->d);
+			cosD = _mm256_cos_ps(this->d);
+		}
+
+		void next() {
+			__m256 oldSinX = sinX;
+			sinX = _mm256_add_ps(_mm256_mul_ps(oldSinX, cosD), _mm256_mul_ps(cosX, sinD));
+			cosX = _mm256_sub_ps(_mm256_mul_ps(cosX, cosD), _mm256_mul_ps(oldSinX, sinD));
+		}
+	}
+```
+### Vectorized Operations
 ...
