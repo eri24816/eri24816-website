@@ -176,6 +176,7 @@ void String::applyImpulse(float x, float J)
 
 ### Fast Successive Sin and Cos
 
+
 ```c++
 	class FastSuccessiveSinCos {
 	public:
@@ -195,7 +196,7 @@ void String::applyImpulse(float x, float J)
 			sinX = _mm256_add_ps(_mm256_mul_ps(oldSinX, cosD), _mm256_mul_ps(cosX, sinD));
 			cosX = _mm256_sub_ps(_mm256_mul_ps(cosX, cosD), _mm256_mul_ps(oldSinX, sinD));
 		}
-	}
+	...
 ```
 ### Vectorized Operations
 ...
