@@ -55,13 +55,12 @@ $$
 
 Here comes the most fun part when building a simulation: to turn the math into code and verify that the math (I've worked hard on) actually works.
 
-I implemented the synthesizer with Juce, a framework to build VSTs. The actual code is complicated, so I will show only the essential parts in the following content. The complete source code is here: https://github.com/eri24816/PhysicsBasedSynth.
+I implemented the synthesizer with Juce, a framework to build VSTs. The actual code is complicated, so I will show only the essential parts in the following content. The complete code is here: https://github.com/eri24816/PhysicsBasedSynth.
 
 ### Main Loop
 This is the main loop for rendering audio. For each time step, the loop updates the simulation then sample the displacement of the string at x=0.01meter. The displacement is then output as the audio sample.
 ```c++
 // synthVoice.h
-// class SynthVoice : public juce::SynthesiserVoice
 
 void renderNextBlock (AudioBuffer <float> &outputBuffer, int startSample, int numSamples) override
 {
@@ -78,6 +77,8 @@ void renderNextBlock (AudioBuffer <float> &outputBuffer, int startSample, int nu
 ### Simulation Class
 Let's step into the function call `simulation->update();`. In the simulation, there are two objects, the string and the hammer, and one interaction, the hammer-string-interaction. For each time step, interaction->apply is called, making the hammer and the string add forces to each other. Then object->update on both objects are called to update their state.
 ```c++
+// Simulation.cpp
+
 void Simulation::update()
 {
 	for (auto& interaction : interactions)
@@ -99,6 +100,8 @@ The string class is the core for the entire simulation and contains heaviest cal
 First of all, when the string is instantiated, the constructor initializes the amplitudes $a_n$ and $b_n$ and precomputes some constants.
 
 ```c++
+// String.cpp
+
 String::String(float L, float tension, float rho, float ESK2, int nHarmonics, float damping)
 	: L(L), tension(tension), rho(rho), ESK2(ESK2), nHarmonics(nHarmonics), transform(nullptr, Vector2<float>{0.0f, 0.0f}), damping(damping)
 {
@@ -176,9 +179,17 @@ void String::applyImpulse(float x, float J)
 
 ### Fast Successive Sin and Cos
 
+Notice that we have to calculate $u(x=0.05,t)$ for each rendering step. Recall that
+$$
+\begin{align}
+u(x,t) &= \sum_n \left( a_n \cos(\omega_nt) + b_n \sin(\omega_n t) \right) \sin\left(k_nx\right)
+\end{align}
+$$
 
 ```c++
-	class FastSuccessiveSinCos {
+// String.cpp
+
+class FastSuccessiveSinCos {
 	public:
 		FastSuccessiveSinCos(__m256 x, __m256 d, float calculateExactInterval=30)
 		{
