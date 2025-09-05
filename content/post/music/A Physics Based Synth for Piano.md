@@ -76,7 +76,7 @@ void renderNextBlock (AudioBuffer <float> &outputBuffer, int startSample, int nu
 }
 ```
 ### Simulation Class
-Let's dive into the line `simulation->update();`. In the simulation, there are two objects, the string and the hammer, and one interaction, the hammer-string-interaction. For each time step, interaction->apply is called, making the hammer and the string add forces to each other. Then object->update on both objects are called to update their state.
+Let's step into the function call `simulation->update();`. In the simulation, there are two objects, the string and the hammer, and one interaction, the hammer-string-interaction. For each time step, interaction->apply is called, making the hammer and the string add forces to each other. Then object->update on both objects are called to update their state.
 ```c++
 void Simulation::update()
 {
@@ -137,7 +137,7 @@ float String::sampleU(float x) const
 }
 ```
 
-The `update` method simply does damping.
+The `update` method simply damps the string.
 
 ```c++
 void String::update(float t, float dt)
