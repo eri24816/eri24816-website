@@ -1,0 +1,40 @@
+<!doctype html><html lang=en-us dir=ltr><head><meta charset=utf-8><meta name=viewport content="width=device-width"><title>Modeling Stiff String for Numeric Simulation | eri24816's website</title><link rel=stylesheet href=/css/main.css><script src=/js/main.23cd0c7d837263b9eaeb96ee2d9ccfa2969daa3fa00fa1c1fe8701a9b87251a1.js integrity="sha256-I80MfYNyY7nq65buLZzPopadqj+gD6HB/ocBqbhyUaE=" crossorigin=anonymous></script><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel=stylesheet><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin=anonymous referrerpolicy=no-referrer></head><body><header><nav><div class=float-left><a href=/>eri24816's website</a></div><div class=float-right><a href=/>Home</a>
+<a href=/posts>Posts</a>
+<a href=/tags>Tags</a></div></nav><style>nav{padding:0 10px;display:flex;justify-content:space-between}nav .float-left{display:flex;list-style:none;gap:1rem;margin:0;padding:0}nav .float-right{display:flex;list-style:none;gap:1rem;margin:0;padding:0}nav a{padding:.5rem;transition:color .2s}nav a:hover{color:#fff}</style></header><main><div class=post><a href=/>Home > </a><a href=/categories/music>Music ></a><h1>Modeling Stiff String for Numeric Simulation</h1><time datetime=2024-11-25T00:00:00+00:00>November 25, 2024</time>
+<script id=MathJax-script async src=https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js></script><script>MathJax={tex:{displayMath:[["\\[","\\]"],["$$","$$"]],inlineMath:[["\\(","\\)"],["$","$"]]},loader:{load:["ui/safe"]}}</script><hr><h1 id=analytical-solution-to-stiff-string>Analytical Solution to Stiff String</h1><p>According to <a href=https://upcommons.upc.edu/bitstream/handle/2117/101752/GraciaSanz.piano.RSCM.2017.pdf>The wave equation for stiff strings and piano tuning</a>, the wave equation for a stiff string is:</p><p>$$
+\begin{align}
+\frac{\partial^2 u}{\partial t^2} &= c^2 \frac{\partial^2 u}{\partial x^2} - \frac{ESK^2}{\rho} \frac{\partial^4 u}{\partial x^4}
+\end{align}
+$$</p><p>where $c$ is the wave speed, $E$ is the Young&rsquo;s modulus, $S$ is the cross-sectional area, $K$ is the radius of gyration, and $\rho$ is the density.</p><p>The equation&rsquo;s general solution is:</p><p>$$
+\begin{align}
+u(x,t) &= \sum_{n=1}^{\infty} \left( a_n \cos(2\pi f_n t) + b_n \sin(2\pi f_n t) \right) \sin\left(\frac{n\pi}{L}x\right)
+\end{align}
+$$</p><p>where $f_n = n f_0 \sqrt{1 + Bn^2}$, $B = \frac{\pi^2 ESK^2}{\tau L^2}$, $f_0 = \frac{c}{2L}$.</p><p>Rewrite it with $\omega_n=2\pi f_n$ and $k_n=\frac{n\pi}{L}$:</p><p>$$
+\begin{align}
+u(x,t) &= \sum_{n=1}^{\infty} \left( a_n \cos(\omega_n t) + b_n \sin(\omega_n t) \right) \sin\left(k_nx\right)
+\end{align}
+$$</p><h1 id=simulation-of-stiff-string>Simulation of Stiff String</h1><p>To simulate a stiff string, I tried to directly solving the displacement, $u$, using Euler&rsquo;s method. It turns out to be quite unstable, especially when high frequency components present.</p><p>Alternatively, we can solve $a_n$ and $b_n$, which is very stable. With $a_n$ and $b_n$ available, we can get $u$ easily using (2). With the initial condition $u(x,t=0)$ and $u&rsquo;(x,t=0)$, the corresponding $a_n$ and $b_n$ are:</p><p>$$
+\begin{align}
+a_n = \frac{2}{L} &\int_0^L u(x,t=0) \sin\left(k_nx\right) dx \\
+b_n = \frac{1}{\omega _n}\frac{2}{L} &\int_0^L u&rsquo;(x,t=0) \sin\left(k_nx\right) dx
+\end{align}
+$$</p><p>where $u(x,t=0)&rsquo;=\frac{\partial u(x,t)}{\partial t}|_{t=0}$, and $\omega_n=2\pi f_n$.</p><p>Note that $a_n$ and $b_n$ remain constant over time as long as no external forces are applied to the string (explanation: $a_n$ and $b_n$ are not functions of $t$ in $(2)$). We don&rsquo;t need to do any computation during the simulation to handle how the wave travels. We only need to take care of how external forces affect $a_n$ and $b_n$.</p><h2 id=modeling-external-force-as-a-dirac-delta-function-shaped-impulse>Modeling External Force as a Dirac Delta Function Shaped Impulse</h2><p>In a real piano, the string interacts with the hammer, the damper, and the bridge, etc.. Thus, during the simulation, we would want to apply external forces to the string.</p><p>Specifically, assume the hammer hits the string at a certain position $x_0$ and time $t_0$ with an impulse $J$. Here we model the impulse as a single-point impact.</p><p>$$
+\begin{equation}
+u&rsquo;(x, t_0^+) = u&rsquo;(x, t_0^-) +
+\frac{J}{\rho} \delta(x - x_0)
+\end{equation}
+$$</p><p>By transforming (5) into the frequency domain using (3)(4), we have:</p><p>$$
+\begin{align}
+b_n(t_0^+) &= b_n(t_0^-) + \frac{2J}{L\rho\omega _n} \sin\left(\frac{n\pi}{L}x_0\right),& \text{when }t_0 = 0
+\end{align}
+$$</p><p>The above equation is a special case at $t_0 = 0$ because (3)(4) are only for $t = 0$. For a general $t_0$, we need to go a step further to consider the phase shift:</p><p>$$
+\begin{align}
+a_n(t_0^+) &= a_n(t_0^-) + \frac{2J}{L\rho\omega _n} \sin\left(k_nx_0\right) \cos(\omega _n t_0) \\
+b_n(t_0^+) &= b_n(t_0^-) + \frac{2J}{L\rho\omega _n} \sin\left(k_nx_0\right) \sin(\omega _n t_0)
+\end{align}
+$$</p><p>Although a delta function shaped impulse is feasible for a simulation in the frequency domain, it introduces intense high-frequency components. I&rsquo;m not sure if it&rsquo;s realistic enough. Anyway, it&rsquo;s simple (no integration in it) thus efficient when used in a simulation.</p><h2 id=modeling-external-force-as-a-gaussian-shaped-impulse>Modeling External Force as a Gaussian Shaped Impulse</h2><p>$$
+\begin{align}
+a_n(t_0^+) &= a_n(t_0^-) + \frac{2J}{L\rho\omega _n} e^{-\frac{1}{2}k^2\sigma^2}\sin\left(k_nx_0\right) \cos(\omega _n t_0) \\
+b_n(t_0^+) &= b_n(t_0^-) + \frac{2J}{L\rho\omega _n} e^{-\frac{1}{2}k^2\sigma^2}\sin\left(k_nx_0\right) \sin(\omega _n t_0)
+\end{align}
+$$</p><div><div>Tags:</div><ul><li><a href=/tags/math/>Math</a></li><li><a href=/tags/audio/>Audio</a></li><li><a href=/tags/differentialequation/>DifferentialEquation</a></li></ul></div></div></main><footer><p>Copyright 2025 Ping-Yi Chen.</p></footer></body></html>
