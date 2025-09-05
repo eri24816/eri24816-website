@@ -13,7 +13,7 @@ $$</p><p>where $f_n = n f_0 \sqrt{1 + Bn^2}$, $B = \frac{\pi^2 ESK^2}{\tau L^2}$
 \begin{align}
 u(x,t) &= \sum_{n=1}^{\infty} \left( a_n \cos(\omega_n t) + b_n \sin(\omega_n t) \right) \sin\left(k_nx\right)
 \end{align}
-$$</p><h2 id=simulation-of-stiff-string>Simulation of Stiff String</h2><p>To simulate a stiff string, I tried to directly solving the displacement, $u$, using Euler&rsquo;s method. It turns out to be quite unstable, especially when high frequency components present.</p><p>Alternatively, we can solve $a_n$ and $b_n$, which is very stable. With $a_n$ and $b_n$ available, we can get $u$ easily using (2). With the initial condition $u(x,t=0)$ and $u&rsquo;(x,t=0)$, the corresponding $a_n$ and $b_n$ are:</p><p>$$
+$$</p><h2 id=simulation-of-stiff-string>Simulation of Stiff String</h2><p>To simulate a stiff string, I tried to directly solving the displacement, $u$, using Euler&rsquo;s method. It turns out to be quite unstable, especially when high frequency components present.</p><p>Alternatively, we can solve $a_n$ and $b_n$, which is very stable. With $a_n$, $b_n$, and $t$ available, we can get $u$ easily using (2). With the initial condition $u(x,t=0)$ and $u&rsquo;(x,t=0)$, the corresponding $a_n$ and $b_n$ are:</p><p>$$
 \begin{align}
 a_n = \frac{2}{L} &\int_0^L u(x,t=0) \sin\left(k_nx\right) dx \\
 b_n = \frac{1}{\omega _n}\frac{2}{L} &\int_0^L u&rsquo;(x,t=0) \sin\left(k_nx\right) dx
