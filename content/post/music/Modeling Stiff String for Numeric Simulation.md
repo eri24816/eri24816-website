@@ -46,7 +46,7 @@ $$
 
 To simulate a stiff string, I tried to directly solving the displacement, $u$, using Euler's method. It turns out to be quite unstable, especially when high frequency components present.
 
-Alternatively, we can solve $a_n$ and $b_n$, which is very stable. With $a_n$ and $b_n$ available, we can get $u$ easily using (2). With the initial condition $u(x,t=0)$ and $u'(x,t=0)$, the corresponding $a_n$ and $b_n$ are:
+Alternatively, we can solve $a_n$ and $b_n$, which is very stable. With $a_n$, $b_n$, and $t$ available, we can get $u$ easily using (2). With the initial condition $u(x,t=0)$ and $u'(x,t=0)$, the corresponding $a_n$ and $b_n$ are:
   
 
 $$

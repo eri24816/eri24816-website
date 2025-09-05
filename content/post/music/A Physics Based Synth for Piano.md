@@ -137,7 +137,7 @@ float String::sampleU(float x) const
 }
 ```
 
-The `update` method does damping. Very simple.
+The `update` method simply does damping.
 
 ```c++
 void String::update(float t, float dt)
