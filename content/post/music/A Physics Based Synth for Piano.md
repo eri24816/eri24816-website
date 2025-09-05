@@ -9,7 +9,7 @@ tags:
   - audio
   - Juce
   - Cpp
-categories: Uncategorized
+categories: music
 series: 
 summary:
 ---
@@ -43,7 +43,7 @@ Notice that the factor $\sqrt{1 + Bn^2}$ is introduced by the stiffness and caus
 
 The amplitudes of harmonics $a_n$ and $b_n$ are the variables to be tracked in the simulation. 
 
-In a real piano, the string interacts with the hammer, the damper, and the bridge, etc.. When external forces are applied to the string at a certain position $x0$ and with $J$ , $a_n$ and $b_n$ changes accordingly (I wrote another  [Modeling Stiff String for Numeric Simulation]({{< ref "Modeling Stiff String for Numeric Simulation" >}}) for detail):
+In a real piano, the string interacts with the hammer, the damper, and the bridge, etc.. When external forces are applied to the string at a certain position $x0$ and with $J$ , $a_n$ and $b_n$ changes accordingly (I wrote another post [Modeling Stiff String for Numeric Simulation]({{< ref "Modeling Stiff String for Numeric Simulation" >}}) for the math details):
 $$
 \begin{align}
 a_n(t_0^+) &= a_n(t_0^-) + \frac{2J}{L\rho\omega _n} \sin\left(\frac{n\pi}{L}x_0\right) \cos(2\pi f_n t_0) \\\
@@ -55,7 +55,7 @@ $$
 
 Here comes the most fun part when building a simulation: to turn the math into code and verify that the math (I've worked hard on) actually works.
 
-I implemented the synthesizer with Juce, a framework to build VSTs. The actual code is complicated, so I will show simplified code in the following content while keeping the essence. The complete source code is here: https://github.com/eri24816/PhysicsBasedSynth.
+I implemented the synthesizer with Juce, a framework to build VSTs. The actual code is complicated, so I will show only the essential parts in the following content. The complete source code is here: https://github.com/eri24816/PhysicsBasedSynth.
 
 ## Main Loop
 This is the main loop for rendering audio. For each time step, the loop updates the simulation then sample the displacement of the string at x=0.01meter. The displacement is then output as the audio sample.
@@ -94,7 +94,7 @@ void Simulation::update()
 
 ## String Class
 
-We finally reach the String class. The string class is the core for the entire simulation and contains heaviest calculation. Because a real-time synth is super performance sensitive, I put much effort and exhausted all possible ways to optimize the code in this class.
+The string class is the core for the entire simulation and contains heaviest calculation. Because a real-time synth is super performance sensitive, I put much effort and exhausted all possible ways to optimize the code in this class.
 
 First of all, when the string is instantiated, the constructor initializes the amplitudes $a_n$ and $b_n$ and precomputes some constants.
 

@@ -90,9 +90,10 @@ b_n(t_0^+) &= b_n(t_0^-) + \frac{2J}{L\rho\omega _n} \sin\left(k_nx_0\right) \si
 \end{align}
 $$
 
-Although a delta function shaped impulse is feasible for a simulation in the frequency domain, it introduces intense high-frequency components. I'm not sure if it's realistic enough. Anyway, it's simple (no integration in it) thus efficient when used in a simulation.
+Although a delta function shaped impulse is feasible for a simulation in the frequency domain, it introduces intense high-frequency components, making the sound harsher.
 
 ## Modeling External Force as a Gaussian Shaped Impulse
+
 
 $$
 \begin{align}
