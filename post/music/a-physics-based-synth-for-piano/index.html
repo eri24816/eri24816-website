@@ -112,8 +112,9 @@ $$</p><h2 id=turn-the-model-into-code>Turn the Model into Code!</h2><p>Here come
 $$
 \begin{align}
 u(x,t) &= \sum_n \left( a_n \cos(\omega_nt) + b_n \sin(\omega_n t) \right) \sin\left(k_nx\right)
-\end{align}
-$$</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>// String.cpp
+\end{align},
+$$
+which means we need to expensively calculate $\cos(\omega_nt)$ and $\sin(\omega_n t)$ for each $n$ and each rendering step. Because the simulation uses a fixed time increment,</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c++ data-lang=c++><span style=display:flex><span><span style=color:#75715e>// String.cpp
 </span></span></span><span style=display:flex><span><span style=color:#75715e></span>
 </span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>FastSuccessiveSinCos</span> {
 </span></span><span style=display:flex><span>	<span style=color:#66d9ef>public</span><span style=color:#f92672>:</span>
