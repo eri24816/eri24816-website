@@ -17,7 +17,7 @@ I really like the sounds of piano. They are a subset of all possible sound waves
 
 Recently I try to make a synthesizer for piano by directly simulate the vibration of piano string and sample audio from it. Although the result sounds not actually like a real piano, the journey of implementing the synth is interesting enough to be written down here.
 
-# The Model of a String
+## The Model of a String
 
 The simplest form of the equation describing a vibrating string is:
 $$
@@ -51,13 +51,13 @@ b_n(t_0^+) &= b_n(t_0^-) + \frac{2J}{L\rho\omega _n} \sin\left(\frac{n\pi}{L}x_0
 \end{align}
 $$
 
-# Turn the Model into Code!
+## Turn the Model into Code!
 
 Here comes the most fun part when building a simulation: to turn the math into code and verify that the math (I've worked hard on) actually works.
 
 I implemented the synthesizer with Juce, a framework to build VSTs. The actual code is complicated, so I will show only the essential parts in the following content. The complete source code is here: https://github.com/eri24816/PhysicsBasedSynth.
 
-## Main Loop
+### Main Loop
 This is the main loop for rendering audio. For each time step, the loop updates the simulation then sample the displacement of the string at x=0.01meter. The displacement is then output as the audio sample.
 ```c++
 // synthVoice.h
@@ -75,7 +75,7 @@ void renderNextBlock (AudioBuffer <float> &outputBuffer, int startSample, int nu
 	}
 }
 ```
-## Simulation Class
+### Simulation Class
 Let's dive into the line `simulation->update();`. In the simulation, there are two objects, the string and the hammer, and one interaction, the hammer-string-interaction. For each time step, interaction->apply is called, making the hammer and the string add forces to each other. Then object->update on both objects are called to update their state.
 ```c++
 void Simulation::update()
@@ -92,7 +92,7 @@ void Simulation::update()
 }
 ```
 
-## String Class
+### String Class
 
 The string class is the core for the entire simulation and contains heaviest calculation. Because a real-time synth is super performance sensitive, I put much effort and exhausted all possible ways to optimize the code in this class.
 
@@ -172,5 +172,5 @@ void String::applyImpulse(float x, float J)
 }
 ```
 
-# Optimization: Vectorized Operations
+## Optimization: Vectorized Operations
 ...
