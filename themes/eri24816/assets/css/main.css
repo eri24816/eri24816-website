@@ -17,11 +17,10 @@
   --background-color: #181818;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: var(--theme-color);
-  margin-top: 0;
-  margin-bottom: 0;
+.intro, h1, h2, h3, h4, h5, h6 {
+  font-family: "Raleway", "Inter", sans-serif;
 }
+
 
 a {
   color: var(--theme-color);
@@ -32,10 +31,21 @@ a:hover {
   color: var(--theme-color-muted);
 }
 
+a:hover h1, a:hover h2, a:hover h3, a:hover h4, a:hover h5, a:hover h6 {
+  color: var(--theme-color-muted);
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--theme-color);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 
 body {
   background-color: var(--background-color);
-  font-family: "Raleway", "Inter", sans-serif;
+  font-family: "Roboto", "Inter", sans-serif;
   color: var(--text-color);
   line-height: 1.5;
   margin: 0;
