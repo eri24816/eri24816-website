@@ -1,5 +1,5 @@
 ---
-title: Modeling Stiff String for Numeric Simulation
+title: Modeling stiff string for numeric simulation
 date: 2024-11-25
 authors:
   - eri24816
