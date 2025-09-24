@@ -1,5 +1,5 @@
 ---
-title: A Physics Based Synth for Piano
+title: Physical modeling synth for piano
 date: 2024-11-26
 authors:
   - eri24816
@@ -9,8 +9,9 @@ tags:
   - audio
   - Juce
   - Cpp
+  - synth
 categories: music
-series: 
+series:
 summary:
 ---
 I really like the sounds of piano. They are a subset of all possible sound waves, with some specific mathematical characteristics which make them sound bright while gentle at the same time. I've been trying to understand what's the magic inside the sounds of piano from i was maybe 12 till now, but I guess my math is still too bad to actually understand it from a fundamental aspect.
@@ -185,28 +186,31 @@ $$
 u(x,t) &= \sum_n \left( a_n \cos(\omega_nt) + b_n \sin(\omega_n t) \right) \sin\left(k_nx\right)
 \end{align},
 $$
-which means we need to expensively calculate $\cos(\omega_nt)$ and $\sin(\omega_n t)$ for each $n$ and each rendering step. Because the simulation uses a fixed time increment, 
+which means we need to calculate $\cos(\omega_nt)$ and $\sin(\omega_n t)$ for each $n$ and each rendering step. To avoid expensive trigonometric functions, we can instead iteratively compute them from previous rendering step with addition and multiplication:
+$$\cos(\omega_n(t+\delta))=\cos(\omega_n t)\cos(\omega_n \delta) - \sin(\omega_n t)\sin(\omega_n \delta)$$
+$$
+\sin(\omega_n(t+\delta)) = \sin(\omega_n t)\cos(\omega_n \delta) + \cos(\omega_n t)\sin(\omega_n \delta)
+$$
 
 ```c++
 // String.cpp
 
 class FastSuccessiveSinCos {
 	public:
-		FastSuccessiveSinCos(__m256 x, __m256 d, float calculateExactInterval=30)
+		FastSuccessiveSinCos(__m256 t, __m256 d)
 		{
-			this->calculateExactInterval = calculateExactInterval;
-			this->x = x;
+			this->t = t;
 			this->d = d;
-			sinX = _mm256_sin_ps(this->x);
-			cosX = _mm256_cos_ps(this->x);
+			sinT = _mm256_sin_ps(this->t);
+			cosT = _mm256_cos_ps(this->t);
 			sinD = _mm256_sin_ps(this->d);
 			cosD = _mm256_cos_ps(this->d);
 		}
 
 		void next() {
-			__m256 oldSinX = sinX;
-			sinX = _mm256_add_ps(_mm256_mul_ps(oldSinX, cosD), _mm256_mul_ps(cosX, sinD));
-			cosX = _mm256_sub_ps(_mm256_mul_ps(cosX, cosD), _mm256_mul_ps(oldSinX, sinD));
+			__m256 oldSinT = sinT;
+			sinT = _mm256_add_ps(_mm256_mul_ps(oldSinT, cosD), _mm256_mul_ps(cosT, sinD));
+			cosT = _mm256_sub_ps(_mm256_mul_ps(cosT, cosD), _mm256_mul_ps(oldSinT, sinD));
 		}
 	...
 ```
