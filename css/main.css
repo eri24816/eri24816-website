@@ -5,23 +5,31 @@
   justify-content: center;
   overflow: hidden;
   width: 300px;
-  height: 270px;
-  background: linear-gradient(160deg, var(--dark-glass), var(--dark-glass-bright));
+  height: 300px;
+  background: var(--dark-glass);
   border-radius: 6px; }
 
-.card:hover {
-  background: var(--dark-glass-bright); }
-
+/* .card:hover {
+  background: var(--dark-glass-bright);
+} */
 .card-content {
   padding: 5px 10px;
-  height: 120px;
+  height: 115px;
   display: flex;
   flex-direction: column;
-  gap: 3px; }
+  gap: 5px; }
 
-.card,
-.card:hover {
-  color: inherit; }
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0));
+  padding: 10px; }
+
+.card:hover h2 {
+  color: var(--theme-color); }
 
 .card-img {
   width: 100%;
@@ -29,14 +37,17 @@
   object-fit: cover; }
 
 .card h2 {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
-  margin: 0; }
+  margin: 0;
+  color: var(--text-color); }
 
 .card p {
   font-size: 14px;
   font-weight: 400;
-  margin: 0; }
+  margin: 0;
+  line-height: 1.5;
+  color: var(--text-color-muted); }
 
 .card-images {
   flex-grow: 1;
@@ -65,9 +76,20 @@
 * {
   box-sizing: border-box; }
 
+/* make all scroll bars pretty */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px; }
+
+::-webkit-scrollbar-track {
+  background: var(--dark-glass); }
+
+::-webkit-scrollbar-thumb {
+  background: var(--dark-glass-bright); }
+
 :root {
   --dark-glass: #000012a7;
-  --dark-glass-bright: #001129a7;
+  --dark-glass-bright: #4f545ba7;
   --text-color: #c5c5c8;
   --text-color-muted: #808080;
   --theme-color: #4486ff;
@@ -84,9 +106,6 @@ a {
   text-decoration: none; }
 
 a:hover {
-  color: var(--theme-color-muted); }
-
-a:hover h1, a:hover h2, a:hover h3, a:hover h4, a:hover h5, a:hover h6 {
   color: var(--theme-color-muted); }
 
 h1, h2, h3, h4, h5, h6 {
