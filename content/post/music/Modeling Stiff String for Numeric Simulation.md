@@ -11,11 +11,11 @@ tags:
   - differentialEquation
 categories: music
 series:
-summary: This post presents a way to model the vibration of a stiff string and model the effects of external forces such as hammer impacts.
+summary: A way to model the vibration of a stiff string and external forces such as hammer impacts.
 ---
 ## Analytical Solution to Stiff String
 
-According to [The wave equation for stiff strings and piano tuning](https://upcommons.upc.edu/bitstream/handle/2117/101752/GraciaSanz.piano.RSCM.2017.pdf), the wave equation for a stiff string is:
+According to this article [The wave equation for stiff strings and piano tuning](https://upcommons.upc.edu/bitstream/handle/2117/101752/GraciaSanz.piano.RSCM.2017.pdf), the wave equation for a stiff string is:
 
 $$
 \begin{align}
