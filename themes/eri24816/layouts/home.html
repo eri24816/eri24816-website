@@ -1,85 +1,115 @@
 {{ define "main" }}
-  {{/*  <div class="visual-container">
+{{/* <div class="visual-container">
     {{ partial "visual.html" . }}
-  </div>  */}}
-  {{ partial "hero.html" . }}
-  {{ .Content }}
-  {{ $categories := slice }}
-  {{ range site.RegularPages }}
-    {{ if not (in $categories .Params.categories) }}
-      {{ $categories = $categories | append .Params.categories }}
-    {{ end }}
+</div> */}}
+{{ partial "hero.html" . }}
+{{ .Content }}
+{{ $categories := slice }}
+{{ range site.RegularPages }}
+{{ if not (in $categories .Params.categories) }}
+{{ $categories = $categories | append .Params.categories }}
+{{ end }}
+{{ end }}
+
+{{ $orderedCategories := slice }}
+{{ range site.Params.categories_order }}
+  {{ if in $categories . }}
+    {{ $orderedCategories = $orderedCategories | append . }}
   {{ end }}
-  
-  {{ range $categories }}
-    <div class="category-section">
-      <a href="/categories/{{ . | urlize }}"><h2 class="capitalize">{{ . }}</h2></a>
-      <div class="scroll-container">
+{{ end }}
+{{ $remainingCategories := slice }}
+{{ range $categories }}
+  {{ if not (in site.Params.categories_order .) }}
+    {{ $remainingCategories = $remainingCategories | append . }}
+  {{ end }}
+{{ end }}
+{{ $allCategories := append $remainingCategories $orderedCategories  }}
+{{ range $allCategories }}
+<div class="category-section">
+    <a href="/categories/{{ . | urlize }}" class="category-name">
+        <h2 class="capitalize">{{ . }}</h2>
+    </a>
+    <div class="scroll-container" id="scroll-container-{{ . | urlize }}">
         <button class="scroll-btn left" onclick="scrollCategory(this, -300)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
         </button>
         <div class="cards-container">
-          {{ range where site.RegularPages "Params.categories" . }}
+            {{ range where site.RegularPages "Params.categories" . }}
             {{ partial "card.html" . }}
-          {{ end }}
+            {{ end }}
         </div>
         <button class="scroll-btn right" onclick="scrollCategory(this, 300)">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 6L15 12L9 18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9 6L15 12L9 18" stroke="white" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" />
+            </svg>
         </button>
-      </div>
     </div>
-  {{ end }}
+</div>
+{{ end }}
 
-  <style>
+<style>
     .category-section {
-      margin: 2rem 0;
-      height: 350px;
+        margin: 2rem 0;
+        height: 350px;
     }
-    .scroll-container {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-    .cards-container {
-      display: flex;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      gap: 2rem;
-      padding: 1rem;
-      min-width: 0;
-    }
-    .cards-container::-webkit-scrollbar {
-      display: none;
-    }
-    .scroll-btn {
-      position: sticky;
-      z-index: 1;
-      padding: 1rem;
-      border: none;
-      background: transparent;
-      color: white;
-      cursor: pointer;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .scroll-btn.left {
-      left: 0;
-    }
-    .scroll-btn.right {
-      right: 0;
-    }
-  </style>
 
-  <script>
-    function scrollCategory(btn, amount) {
-      const container = btn.parentElement.querySelector('.cards-container');
-      container.scrollLeft += amount;
+    .category-name {
+        display: block;
+        width: fit-content;
     }
-  </script>
+
+    .scroll-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+    }
+
+    .cards-container {
+        display: flex;
+        scroll-behavior: smooth;
+        gap: 2rem;
+        padding: 1rem;
+    }
+
+    .scroll-btn {
+        position: sticky;
+        z-index: 1;
+        padding: 1rem;
+        border: none;
+        background: transparent;
+        color: white;
+        cursor: pointer;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+    }
+
+    .scroll-btn.left {
+        left: 0;
+    }
+
+    .scroll-btn.right {
+        right: 0;
+    }
+
+    .scroll-btn:hover {
+
+        background: var(--dark-glass-bright);
+    }
+</style>
+
+<script>
+    function scrollCategory(btn, amount) {
+        const container = btn.parentElement;
+        container.scrollLeft += amount;
+    }
+</script>
 {{ end }}

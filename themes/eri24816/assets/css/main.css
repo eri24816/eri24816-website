@@ -5,9 +5,21 @@
   box-sizing: border-box;
 }
 
+/* make all scroll bars pretty */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--dark-glass);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--dark-glass-bright);
+}
+
 :root {
   --dark-glass: #000012a7;
-  --dark-glass-bright: #001129a7;
+  --dark-glass-bright: #4f545ba7;
   --text-color: #c5c5c8;
   --text-color-muted: #808080;
   --theme-color: #4486ff;
@@ -28,10 +40,6 @@ a {
 }
 
 a:hover {
-  color: var(--theme-color-muted);
-}
-
-a:hover h1, a:hover h2, a:hover h3, a:hover h4, a:hover h5, a:hover h6 {
   color: var(--theme-color-muted);
 }
 

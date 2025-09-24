@@ -16,27 +16,31 @@
             </div>
             <h3 class="hero-subtitle">{{ .Site.Params.subtitle }}</h3>
 
-        </div>
-        <p class="intro">
-            {{ .Site.Params.intro }}
-        </p>
 
+        </div>
+
+        
         <div class="embed fade">
             {{ .Site.Params.embed | safeHTML }}
         </div>
 
+
     </div>
     <div class="hero-right">
-        <div class="highlights">
+        
+        <p class="intro">
+            {{ .Site.Params.intro }}
+        </p>
+        {{/*  <div class="highlights">
             <h2 class="highlights-title">Highlights</h2>
-            <div class="scroll-container fade">
+            <div class="hero-scroll-container fade">
                 <button class="scroll-btn left" onclick="scrollHighlights(this, -1)">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round" />
                     </svg>
                 </button>
-                <div class="cards-container">
+                <div class="hero-cards-container">
                     {{ range (where .Site.RegularPages "Params.tags" "intersect" (slice "highlights")) }}
                     {{ partial "card.html" . }}
                     {{ end }}
@@ -48,18 +52,18 @@
                     </svg>
                 </button>
             </div>
-        </div>
+        </div>  */}}
     </div>
 </div>
 <style>
     .hero {
         max-width: 1000px;
-        margin: 0 auto;
+        min-width: 800px;
         padding: 2rem;
         display: flex;
         gap: 3rem;
-        align-items: center;
-        justify-content: space-between;
+        align-items: flex-start;
+        justify-content: center;
         margin-top: 100px;
         flex-wrap: wrap;
     }
@@ -70,14 +74,18 @@
         display: flex;
         flex-direction: column;
         align-items: right;
-        gap: 1rem;
+        gap: 2rem;
         max-width: 400px;
     }
 
     .hero-right {
+        display: flex;
+        flex-direction: column;
+        align-items: left;
         max-width: 400px;
         flex: 1.5;
         min-width: 200px;
+        gap: 1rem;
     }
 
 
@@ -139,7 +147,7 @@
         margin-top: 10px;
         display: flex;
         flex-direction: row;
-        gap: 0.5rem;
+        gap: 2rem;
         align-items: center;
     }
 
@@ -165,19 +173,20 @@
     }
 
 
-    .cards-container-inner::-webkit-scrollbar {
+    .hero-cards-container-inner::-webkit-scrollbar {
         display: none;
     }
 
-    .scroll-container {
+    .hero-scroll-container {
         display: flex;
         align-items: center;
+        overflow-x: auto;
+        scroll-behavior: smooth;
     }
 
-    .cards-container {
+    .hero-cards-container {
         position: relative;
         display: flex;
-        overflow-x: hidden;
         scroll-behavior: smooth;
         gap: 2rem;
         padding: 1rem;
@@ -185,31 +194,11 @@
         padding: 0 1rem;
     }
 
-    .cards-container::-webkit-scrollbar {
+    .hero-cards-container::-webkit-scrollbar {
         display: none;
     }
 
-    .scroll-btn {
-        position: sticky;
-        z-index: 1;
-        padding: 1rem;
-        border: none;
-        background: transparent;
-        color: white;
-        cursor: pointer;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 
-    .scroll-btn.left {
-        left: 0;
-    }
-
-    .scroll-btn.right {
-        right: 0;
-    }
 
     .highlights{
         width: 500px;
@@ -242,7 +231,7 @@
 
 <script>
     function scrollHighlights(btn, amount) {
-        const container = btn.parentElement.querySelector('.cards-container');
+        const container = btn.parentElement.querySelector('.hero-cards-container');
         container.scrollLeft += amount * container.clientWidth + 5;
     }
 </script>
