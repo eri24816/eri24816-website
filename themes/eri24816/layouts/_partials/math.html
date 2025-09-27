@@ -3,10 +3,16 @@
   MathJax = {
     tex: {
       displayMath: [['\\[', '\\]'], ['$$', '$$']],  // block
-      inlineMath: [['\\(', '\\)'], ['$', '$']]                  // inline
+      inlineMath: [['\\(', '\\)'], ['$', '$']],
+      tex: {
+        tags: 'ams'
+      }
     },
     loader:{
       load: ['ui/safe']
     },
+    options: {
+      skipHtmlTags: ['pre', 'code'],
+    }
   };
 </script>

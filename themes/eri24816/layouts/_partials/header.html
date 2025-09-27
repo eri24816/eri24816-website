@@ -1,9 +1,9 @@
 <!-- <h1>{{ site.Title }}</h1> -->
 
 <nav>
-    <div class="float-left">
+    <h1 class="float-left">
         <a href="/">{{ site.Title }}</a>
-    </div>
+    </h1>
     <div class="float-right">
         <a href="/">Home</a>
         <a href="/tags">Tags</a>
@@ -13,17 +13,24 @@
 
 <style>
     nav {
-        padding: 0px 10px;
+        padding: 0px 100px;
         display: flex;
         justify-content: space-between;
     }
 
-    nav .float-left {
+    @media (max-width: 800px) {
+        nav {
+            padding: 0px 20px;
+        }
+    }
+
+    nav h1 {
         display: flex;
         list-style: none;
         gap: 1rem;
         margin: 0;
         padding: 0;
+        font-size: 1.3rem;
     }
 
     nav .float-right {
@@ -36,10 +43,6 @@
 
     nav a {
         padding: 0.5rem;
-        transition: color 0.2s;
     }
 
-    nav a:hover {
-        color: #ffffff;
-    }
 </style>
