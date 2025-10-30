@@ -25,7 +25,7 @@
 {{ end }}
 {{ $allCategories := append $remainingCategories $orderedCategories  }}
 {{ range $allCategories }}
-<img src="https://imgur.com/pBOqZZb.png" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.3; object-fit: cover;">
+<img src="https://imgur.com/pBOqZZb.png" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.1; object-fit: cover;">
 <div class="category-section">
     <a href="/categories/{{ . | urlize }}" class="category-name">
         <h2 class="capitalize">{{ . }}</h2>
