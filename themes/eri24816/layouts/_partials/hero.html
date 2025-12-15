@@ -5,88 +5,62 @@
             <div class="profile-photo">
                 <img src="{{ .Site.Params.profile_photo }}" alt="Profile photo">
             </div>
-            <div class="hero-name-and-contact">
-                <h2 class="hero-name">{{ .Site.Params.name }}</h2>
-                <div class="contact">
-                    <a href="mailto:{{ .Site.Params.email }}"><i class="fas fa-envelope"></i></a>
-                    <a href="{{ .Site.Params.github }}"><i class="fab fa-github"></i></a>
-                    <a href="{{ .Site.Params.instagram }}"><i class="fab fa-instagram"></i></a>
-                    <a href="{{ .Site.Params.linkedin }}"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-            <h3 class="hero-subtitle">{{ .Site.Params.subtitle }}</h3>
+
 
 
         </div>
-
-        
-        <div class="embed fade">
-            {{ .Site.Params.embed | safeHTML }}
-        </div>
-
 
     </div>
     <div class="hero-right">
+        <div class="hero-name-and-contact">
+            <h2 class="hero-name">{{ .Site.Params.name }}</h2>
+            <div class="contact">
+                <a href="mailto:{{ .Site.Params.email }}"><i class="fas fa-envelope"></i></a>
+                <a href="{{ .Site.Params.github }}"><i class="fab fa-github"></i></a>
+                <a href="{{ .Site.Params.instagram }}"><i class="fab fa-instagram"></i></a>
+                <a href="{{ .Site.Params.linkedin }}"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+        <h3 class="hero-subtitle">{{ .Site.Params.subtitle }}</h3>
         
         <div class="intro">
             {{ with .Site.GetPage "intro.md" }}
             {{ .Content | safeHTML }}
             {{ end }}
         </div>
-        {{/*  <div class="highlights">
-            <h2 class="highlights-title">Highlights</h2>
-            <div class="hero-scroll-container fade">
-                <button class="scroll-btn left" onclick="scrollHighlights(this, -1)">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15 6L9 12L15 18" stroke="white" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </button>
-                <div class="hero-cards-container">
-                    {{ range (where .Site.RegularPages "Params.tags" "intersect" (slice "highlights")) }}
-                    {{ partial "card.html" . }}
-                    {{ end }}
-                </div>
-                <button class="scroll-btn right" onclick="scrollHighlights(this, 1)">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M9 6L15 12L9 18" stroke="white" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </button>
-            </div>
-        </div>  */}}
+
+        <div class="embed fade">
+            {{ .Site.Params.embed | safeHTML }}
+        </div>
     </div>
 </div>
 <style>
     .hero {
-        min-width: 800px;
+        width: 100%;
+        max-width: 1200px;
         padding: 2rem;
         display: flex;
-        gap: 2rem;
+        gap: 3rem;
         align-items: flex-start;
-        justify-content: flex-start;
-        margin-top: 100px;
-        margin-left: 60px;
-        margin-right: 60px;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
         flex-wrap: wrap;
     }
 
 
     .hero-left {
-        flex: 1;
         display: flex;
         flex-direction: column;
-        align-items: right;
+        align-items: center;
         gap: 2rem;
-        max-width: 400px;
     }
 
     .hero-right {
         display: flex;
         flex-direction: column;
-        align-items: left;
+        align-items: flex-start;
         max-width: 800px;
-        flex: 1;
         min-width: 200px;
         gap: 1rem;
     }
@@ -97,6 +71,7 @@
         width: 180px;
         height: 180px;
         overflow: hidden;
+        border-radius: 50%;
     }
 
     .profile-photo img {
@@ -107,7 +82,7 @@
 
     .name {
         margin: 0;
-        font-size: 1.5rem;
+        font-size: 2.5rem;
         color: var(--text-color);
     }
 
@@ -122,12 +97,13 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
+        font-size: 2rem;
     }
 
     .intro {
         margin: 0;
         line-height: 1.6;
-        font-size: 14px;
+        font-size: 24px;
     }
 
     .intro p, ul {
@@ -137,7 +113,7 @@
     .intro h2 {
         margin-top: 1rem;
         margin-bottom: 0;
-        font-size: 1rem;
+        font-size: 1.5rem;
         font-weight: 600;
     }
     .intro a {
@@ -154,10 +130,12 @@
         font-weight: 600;
         margin-bottom: 0;
         margin-top: 0;
+        font-size: 2.5rem;
     }
 
     .hero-subtitle {
         margin-top: 0;
+        font-size: 1.5rem;
         color: var(--text-color-muted);
     }
 
@@ -217,23 +195,7 @@
     }
 
 
-    @media (max-width: 800px) {
-        .hero {
-            flex-direction: column;
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-    
-        .hero-right {
-            max-width: 100%;
-            width: 100%;
-        }
-    
-        .highlights {
-            width: 100%;
-        }
-    
-    }
+
 </style>
 
 <script>
