@@ -15,6 +15,7 @@ summary: |-
 
   Authors: Ping-Yi Chen, Chih-Pin Tan, Yi-Hsuan Yang
 video: YkrsK2dMfU8
+info: Ping-Yi Chen, Chih-Pin Tan, Yi-Hsuan Yang
 ---
 [Paper](https://arxiv.org/pdf/2510.05881) | [Project page](https://sfs-demo.eri24816.tw/)
 
@@ -30,7 +31,8 @@ This observation became the core motivation of our work.
 
 We took inspiration from this human workflow: first decide the song’s structure and theme, then fill in the surrounding content. In our model, the user provides a song structure, optionally along with a seed segment. The model then generates the remaining segments by selectively attending to related parts of the song.
 
-{{< figure src="/Pasted image 20251215032244.png"  >}}
+
+{{< figure src="/Pasted image 20251215051346.png"  >}}
 
 This design has a few nice properties. The model can generate music in real time (around 120 BPM on an RTX4090), and it doesn’t require strict chronological order, so it can better fit into the human user's workflow, where ideas for different part of the song may emerge out of order.
 
