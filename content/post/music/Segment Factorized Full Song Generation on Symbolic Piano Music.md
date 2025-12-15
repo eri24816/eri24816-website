@@ -17,11 +17,11 @@ video: YkrsK2dMfU8
 
 This is my first music generation paper, presented at the NeurIPS 2025 AI for Music Workshop.
 
-While reading prior work, I notice that full-song generation models need to meet two challenging goals at once: maintaining global coherence while efficiently generating long sequences. To address this, many approaches rely on hierarchical generation or carefully designed attention mechanisms.
+While reading prior work, I notice that full-song generation models need to achieve two challenging goals at once: maintaining global coherence while efficiently generating long sequences. To address this, there has been several approaches using techniques such as hierarchical generation or selective attention mechanisms.
 
-But then I started wondering: why don’t humans seem to encounter this problem when writing music?
+Then I started wondering: why don’t humans seem to encounter this problem when writing music?
 
-Think about how people actually compose songs. A composer rarely writes a song strictly left to right while constantly keeping the entire piece in mind. Instead, they usually start with a theme and a rough song structure, decide where that theme appears, and then gradually fill in the rest. When working on a specific section, they only refer to the most relevant parts of the song, not the entire composition, which is partially autoregressive. Revisiting everything all the time would be unnecessary and inefficient.
+Think about how people naturally compose songs. A composer rarely writes a song strictly left to right while constantly keeping the entire piece in mind. Instead, they usually start with a theme and a rough song structure, decide where that theme appears, and then gradually fill in the rest. When working on a specific section, they only refer to the most relevant parts of the song, not the entire composition, which is partially autoregressive. Revisiting everything all the time would be unnecessary and inefficient.
 
 This observation became the core motivation of our work.
 
