@@ -10,7 +10,10 @@ tags:
   - music-generation
 categories: music
 series:
-summary: "My first music generation paper.🎉We propose a full-song generation model with selective attention to related segments. It can smoothly collaborate with human composing music. Authors: Ping-Yi Chen, Chih-Pin Tan, Yi-Hsuan Yang"
+summary: |-
+  My first music generation paper.🎉We propose a full-song generation model with selective attention to related segments. It can smoothly collaborate with human composing music. 
+
+  Authors: Ping-Yi Chen, Chih-Pin Tan, Yi-Hsuan Yang
 video: YkrsK2dMfU8
 ---
 [Paper](https://arxiv.org/pdf/2510.05881) | [Project page](https://sfs-demo.eri24816.tw/)
@@ -31,10 +34,12 @@ We took inspiration from this human workflow: first decide the song’s structur
 
 This design has a few nice properties. The model can generate music in real time (around 120 BPM on an RTX4090), and it doesn’t require strict chronological order, so it can better fit into the human user's workflow, where ideas for different part of the song may emerge out of order.
 
-I always like my projects to be interactive, so I built an interface where users can iteratively co-create music with the model (demo around 0:40 in the video).
+I always like my projects to be interactive, so I built an interface where users can iteratively co-create music with the model (demo around 0:40 in the video above).
 
 {{< figure src="/Pasted image 20251215033132.png"  >}}
 
 ## Abstract:
 
 We propose the Segmented Full-Song Model (SFS) for symbolic full-song generation. The model accepts a user-provided song structure and an optional short seed segment that anchors the main idea around which the song is developed. By factorizing a song into segments and generating each one through selective attention to related segments, the model achieves higher quality and efficiency compared to prior work. To demonstrate its suitability for human–AI interaction, we further wrap SFS into a web application that enables users to iteratively co-create music on a piano roll with customizable structures and flexible ordering.
+
+Learn more at [the paper](https://arxiv.org/pdf/2510.05881) and [the project page](https://sfs-demo.eri24816.tw/).
