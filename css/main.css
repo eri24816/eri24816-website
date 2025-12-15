@@ -99,7 +99,7 @@
   --theme-color-muted: #4486ff99;
   --secondary-color: #ff9900;
   --secondary-color-muted: #ff990099;
-  --background-color: #181818; }
+  --background-color: #1d1d1e; }
 
 .intro, h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", "Inter", sans-serif; }
@@ -121,7 +121,9 @@ body {
   color: var(--text-color);
   line-height: 1.5;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+  font-size: 20px;
+  background-color: var(--background-color); }
 
 header {
   position: fixed;
@@ -143,7 +145,7 @@ h1 {
 
 main {
   padding: 0px 60px;
-  margin-top: 100px; }
+  margin-top: 50px; }
 
 @media (max-width: 800px) {
   main {
