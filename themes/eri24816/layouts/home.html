@@ -12,7 +12,6 @@
 <div class="home-posts">
     {{ range site.RegularPages }}
     {{ if not .Params.hideInHome }}
-    <a href="{{ .RelPermalink }}">
         <div class="home-post">
             <div class="home-post-img-container">
                 {{ if .Params.video }}
@@ -29,11 +28,14 @@
                 {{ end }}
             </div>
             <div class="home-post-content">
-                <h2>{{ .Title }}</h2>
-                <p>{{ .Summary | plainify | truncate 300 }}</p>
+
+                <a href="{{ .RelPermalink }}">
+                    <h2>{{ .Title }}</h2>
+                    <p>{{ .Summary | plainify | truncate 300 }}</p>
+                </a>
+                <p class="home-post-info">{{ .Params.info | markdownify }}</p>
             </div>
         </div>
-    </a>
     {{ end }}
     {{ end }}
 </div>
@@ -116,6 +118,11 @@
     .home-post-content p {
         color: var(--text-color-muted);
         margin: 4px 0;
+    }
+
+    .home-post-info {
+        color: var(--text-color-muted);
+        font-family: "Raleway", "Inter", sans-serif;
     }
 
     .cards-container {
