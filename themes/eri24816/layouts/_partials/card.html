@@ -2,13 +2,21 @@
 
 <a href="{{ .RelPermalink }}" class="card glass">
     <div class="card-images">
-
-        {{ if .Params.image }}
-            <img class="card-img" src="{{ .Params.image }}" alt="{{ .Title }}">
+        <!-- check if it is a post -->
+        {{ if .Params.date }} 
+            {{ if .Params.image }}
+                <img class="card-img" src="{{ .Params.image }}" alt="{{ .Title }}">
+            {{ else }}
+                <img class="card-img" src="https://i.ytimg.com/vi_webp/{{ .Params.video }}/sddefault.webp" alt="{{ .Title }}">
+            {{ end }}
         {{ end }}
         {{ range first 4 .Pages }}
             <div class="masonry-item">
-                <img class="card-img" src="{{ .Params.image }}" alt="{{ .Title }}">
+                {{ if .Params.image }}
+                    <img class="card-img" src="{{ .Params.image }}" alt="{{ .Title }}">
+                {{ else }}
+                    <img class="card-img" src="https://i.ytimg.com/vi_webp/{{ .Params.video }}/sddefault.webp" alt="{{ .Title }}">
+                {{ end }}
             </div>
         {{ end }}
     </div>

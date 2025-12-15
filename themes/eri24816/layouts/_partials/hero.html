@@ -23,11 +23,9 @@
         </div>
         <h3 class="hero-subtitle">{{ .Site.Params.subtitle }}</h3>
         
-        <div class="intro">
-            {{ with .Site.GetPage "intro.md" }}
-            {{ .Content | safeHTML }}
-            {{ end }}
-        </div>
+        <p class="intro">
+            {{ .Site.Params.intro }}
+        </p>
 
         <div class="embed fade">
             {{ .Site.Params.embed | safeHTML }}
@@ -194,6 +192,10 @@
         margin-left: 3rem;
     }
 
+    @media (max-width: 768px) {
+        .contact a{
+            font-size: 1.5rem;
+        }
 
 
 </style>

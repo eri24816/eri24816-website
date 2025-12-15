@@ -4,6 +4,12 @@
   padding: 2rem;
 }
 
+@media (max-width: 768px) {
+  .post {
+    padding: 1rem;
+  }
+}
+
 .post img {
   max-width: 80%;
   height: auto;

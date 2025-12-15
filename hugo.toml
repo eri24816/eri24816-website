@@ -14,3 +14,4 @@ theme = "eri24816"
   # embed = '''<iframe style="border-radius:6px" src="https://open.spotify.com/embed/artist/5XJx2SFNvzx61hF4OX3Z32?utm_source=generator&amp;theme=0" width="600px" height="152" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>'''
 
   categories_order = ["music", "future projects"]
+  intro = "I like AI, making music, fractals, and doggo🐕."
