@@ -15,7 +15,7 @@ summary: |-
 
   Authors: Ping-Yi Chen, Chih-Pin Tan, Yi-Hsuan Yang
 video: YkrsK2dMfU8
-info: Ping-Yi Chen, Chih-Pin Tan, Yi-Hsuan Yang
+info: Ping-Yi Chen, Chih-Pin Tan, Yi-Hsuan Yang | [Paper](https://arxiv.org/pdf/2510.05881) | [Project page](https://sfs-demo.eri24816.tw/)
 ---
 [Paper](https://arxiv.org/pdf/2510.05881) | [Project page](https://sfs-demo.eri24816.tw/)
 
