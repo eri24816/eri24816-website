@@ -29,9 +29,11 @@ We took inspiration from this human workflow: first decide the song’s structur
 
 {{< figure src="/Pasted image 20251215032244.png"  >}}
 
-This design has a few nice properties. The model can generate music in real time (around 120 BPM on an RTX4090), and it doesn’t require strict chronological order, so it can better fit into the human user's workflow, where ideas of different part of the song may emerge out of order.
+This design has a few nice properties. The model can generate music in real time (around 120 BPM on an RTX4090), and it doesn’t require strict chronological order, so it can better fit into the human user's workflow, where ideas for different part of the song may emerge out of order.
 
 I always like my projects to be interactive, so I built an interface where users can iteratively co-create music with the model (demo around 0:40 in the video).
+
+{{< figure src="/Pasted image 20251215033132.png"  >}}
 
 ## Abstract:
 
