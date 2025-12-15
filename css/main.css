@@ -75,6 +75,15 @@
   margin: 1rem auto 2rem auto;
   display: block; }
 
+.post-video {
+  display: block;
+  margin: 1rem auto;
+  max-width: 800px;
+  aspect-ratio: 16 / 9; }
+
+.post {
+  word-wrap: break-word; }
+
 * {
   box-sizing: border-box; }
 
@@ -207,3 +216,10 @@ main {
 .fade {
   opacity: 0.9;
   transition: opacity 0.3s ease-in-out; }
+
+pre {
+  overflow-x: auto; }
+
+.MathJax {
+  overflow-x: auto;
+  overflow-y: hidden; }
