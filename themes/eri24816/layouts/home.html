@@ -14,7 +14,11 @@
     <div class="home-post">
         {{ if .Params.image }}
             <div class="home-post-img-container">
-                <img class="home-post-img" src="{{ .Params.image }}" alt="{{ .Title }}">
+                {{ if .Params.video }}
+                    <iframe width="auto" height="100%" src="https://www.youtube.com/embed/{{ .Params.video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                {{ else }}
+                    <img class="home-post-img" src="{{ .Params.image }}" alt="{{ .Title }}">
+                {{ end }}
             </div>
         {{ end }}
         <div class="home-post-content">

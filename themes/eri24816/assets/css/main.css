@@ -157,3 +157,11 @@ main {
   opacity: 0.9;
   transition: opacity 0.3s ease-in-out;
 }
+pre {
+overflow-x: auto;
+}
+
+.MathJax {
+overflow-x: auto;
+overflow-y: hidden;
+}

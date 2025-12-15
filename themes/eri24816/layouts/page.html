@@ -1,7 +1,7 @@
 {{ define "main" }}
-  <div class="post">
+<div class="post">
     <a href="/">Home > </a>
-    <a href="{{ "/categories/" | relLangURL }}{{ .Params.categories | urlize }}">{{ .Params.categories | title }} ></a>
+    <a href="{{ " /categories/" | relLangURL }}{{ .Params.categories | urlize }}">{{ .Params.categories | title }} ></a>
     <h1>{{ .Title }}</h1>
 
     {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
@@ -9,7 +9,15 @@
     <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
     {{ partialCached "math.html" . }}
     <hr>
+    {{ if .Params.video }}
+
+    <iframe class="post-video" src="https://www.youtube.com/embed/{{ .Params.video }}" title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    {{ end }}
     {{ .Content }}
-    {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }} 
-  </div>
+    {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+</div>
 {{ end }}

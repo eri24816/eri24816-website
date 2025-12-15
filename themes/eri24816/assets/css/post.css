@@ -10,3 +10,14 @@
   margin: 1rem auto 2rem auto;
   display: block;
 }
+
+.post-video {
+  display: block;
+  margin: 1rem auto;
+  max-width: 800px;
+  aspect-ratio: 16 / 9;
+}
+
+.post{
+  word-wrap: break-word;
+}
