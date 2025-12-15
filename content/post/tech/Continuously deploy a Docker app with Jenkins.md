@@ -14,6 +14,7 @@ tags:
 categories: tech
 series:
 summary: Use Jenkins to automatically pull each commit from GitHub and deploy it to the server.
+weight: "-20"
 ---
 I created an AI-generated music application using Vue and Python, and I used Jenkins to automatically pull each commit from GitHub and deploy it to the server. It's very convenient!
 
