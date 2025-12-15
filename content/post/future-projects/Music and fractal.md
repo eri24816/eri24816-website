@@ -12,7 +12,7 @@ tags:
 categories: future projects
 series:
 summary:
-weight: "-10"
+weight: -10
 ---
 Both music and fractals have multi-level structures. 
 This makes me think of two possible ways converting fractals into sound or music:
