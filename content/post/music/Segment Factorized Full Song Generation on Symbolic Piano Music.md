@@ -17,7 +17,7 @@ video: YkrsK2dMfU8
 
 This is my first music generation paper, presented at the NeurIPS 2025 AI for Music Workshop.
 
-One thing that kept bothering me while reading prior work is this: full-song generation models struggle with two conflicting goals at once: maintaining global coherence while efficiently generating very long sequences. To address this, many approaches rely on hierarchical generation or carefully designed attention mechanisms.
+While reading prior work, I notice that full-song generation models need to meet two challenging goals at once: maintaining global coherence while efficiently generating long sequences. To address this, many approaches rely on hierarchical generation or carefully designed attention mechanisms.
 
 But then I started wondering: why don’t humans seem to encounter this problem when writing music?
 
@@ -27,7 +27,9 @@ This observation became the core motivation of our work.
 
 We took inspiration from this human workflow: first decide the song’s structure and theme, then fill in the surrounding content. In our model, the user provides a song structure, optionally along with a seed segment. The model then generates the remaining segments by selectively attending to related parts of the song.
 
-This design has a few nice properties. The model can generate music in real time (around 120 BPM on an RTX4090), and it doesn’t require strict chronological order, so it can better fit into the human user's workflow.
+{{< figure src="/Pasted image 20251215032244.png"  >}}
+
+This design has a few nice properties. The model can generate music in real time (around 120 BPM on an RTX4090), and it doesn’t require strict chronological order, so it can better fit into the human user's workflow, where ideas of different part of the song may emerge out of order.
 
 I always like my projects to be interactive, so I built an interface where users can iteratively co-create music with the model (demo around 0:40 in the video).
 
