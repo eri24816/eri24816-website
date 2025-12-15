@@ -10,7 +10,7 @@
 {{ .Content }}
 
 <div class="home-posts">
-    {{ range site.RegularPages }}
+    {{ range sort site.RegularPages "Params.weight" "desc" }}
     {{ if not .Params.hideInHome }}
         <div class="home-post">
             <div class="home-post-img-container">
@@ -29,7 +29,7 @@
             </div>
             <div class="home-post-content">
 
-                <a href="{{ .RelPermalink }}">
+                <a class="home-post-content-link" href="{{ .RelPermalink }}">
                     <h2>{{ .Title }}</h2>
                     <p>{{ .Summary | plainify | truncate 300 }}</p>
                 </a>
@@ -82,11 +82,6 @@
         color: var(--text-color);
     }
 
-    .home-post:hover {
-        background: var(--dark-glass-bright);
-    }
-
-
 
     .home-post-img-container {
         max-width: 500px;
@@ -120,9 +115,18 @@
         margin: 4px 0;
     }
 
-    .home-post-info {
+    .home-post-content-link {
+        color: var(--text-color);
+    }
+
+    .home-post-content-link:hover {
+        color: var(--theme-color);
+    }
+
+    .home-post-content .home-post-info {
         color: var(--text-color-muted);
         font-family: "Raleway", "Inter", sans-serif;
+        margin-top: 20px;
     }
 
     .cards-container {
