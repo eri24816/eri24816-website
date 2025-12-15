@@ -17,7 +17,7 @@ video: YkrsK2dMfU8
 
 This is my first music generation paper, presented at NeurIPS 2025 AI for Music Workshop.
 
-Approaches of full-song generation need to address the challenge of simultaneously maintain global coherence and generate long sequence efficiently.
+Approaches of full-song generation need to address the challenge of simultaneously maintain global coherence and generate long sequence efficiently. In respond, existing approaches has applied techniques such as hierarchical generation and selective attention.
 
 We took inspiration from human songwriters' typical workflow: first decide the theme and structure of the song, then fill in the surrounding content.
 
