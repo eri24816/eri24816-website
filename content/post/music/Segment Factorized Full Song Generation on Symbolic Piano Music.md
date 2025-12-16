@@ -10,10 +10,7 @@ tags:
   - music-generation
 categories: music
 series:
-summary: |-
-  My first music generation paper.🎉We propose a full-song generation model with selective attention to related segments. It can smoothly collaborate with human composing music. 
-
-  Authors: Ping-Yi Chen, Chih-Pin Tan, Yi-Hsuan Yang
+summary: My first music generation paper.🎉We propose a full-song generation model with selective attention to related segments. It can smoothly collaborate with human composing music.
 video: YkrsK2dMfU8
 info: Ping-Yi Chen, Chih-Pin Tan, Yi-Hsuan Yang | [Paper](https://arxiv.org/pdf/2510.05881) | [Project page](https://sfs-demo.eri24816.tw/)
 weight: 100
