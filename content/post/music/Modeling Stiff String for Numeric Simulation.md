@@ -101,3 +101,4 @@ a_n(t_0^+) &= a_n(t_0^-) + \frac{2J}{L\rho\omega _n} e^{-\frac{1}{2}k^2\sigma^2}
 b_n(t_0^+) &= b_n(t_0^-) + \frac{2J}{L\rho\omega _n} e^{-\frac{1}{2}k^2\sigma^2}\sin\left(k_nx_0\right) \sin(\omega _n t_0)
 \end{align}
 $$
+After deriving those stuff, I implemented this model into a synthesizer. See [Physical modeling synth for piano]({{< ref "Physical modeling synth for piano" >}}).
