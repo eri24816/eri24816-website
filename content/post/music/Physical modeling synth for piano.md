@@ -14,7 +14,7 @@ categories: music
 series:
 summary:
 ---
-I really like the sounds of piano. They are a subset of all possible sound waves, with some specific mathematical characteristics which make them sound bright while gentle at the same time. I've been trying to understand what's the magic inside the sounds of piano from i was maybe 12 till now, but I guess my math is still too bad to actually understand it from a fundamental aspect.
+I really like the sounds of piano. They are a subset of all possible sound waves, with some specific mathematical characteristics which make them sound bright while gentle at the same time. I've been trying to understand what's the magic inside the sounds of piano from i was maybe 12 till now, but I guess my math is still too bad to actually understand it from a fundamental aspect. 
 
 Recently I try to make a synthesizer for piano by directly simulate the vibration of piano string and sample audio from it. Although the result sounds not actually like a real piano, the journey of implementing the synth is interesting enough to be written down here.
 
