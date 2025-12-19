@@ -25,9 +25,8 @@ Then I started wondering: why don’t humans seem to encounter this problem when
 
 Think about how people naturally compose songs. A composer rarely writes a song strictly left to right while constantly keeping the entire piece in mind. Instead, they usually start with a theme and a rough song structure, decide where that theme appears, and then gradually fill in the rest. When working on a specific section, they only refer to the most relevant parts of the song, not the entire composition, which is partially autoregressive. Revisiting everything all the time would be unnecessary and inefficient.
 
-This observation became the core motivation of our work.
 
-We took inspiration from this human workflow: first decide the song’s structure and theme, then fill in the surrounding content. In our model, the user provides a song structure, optionally along with a seed segment. The model then generates the remaining segments by selectively attending to related parts of the song.
+We took inspiration from this human workflow: first decide the song’s structure and theme, then fill in the surrounding content. To use our model, the user provides a song structure, optionally with a seed segment. The model then generates the remaining segments by selectively attending to related parts of the song.
 
 
 {{< figure src="/Pasted image 20251215051346.png"  >}}
