@@ -13,6 +13,7 @@ tags:
 categories: music
 series:
 summary:
+video: fHLo55w_ymg
 ---
 I really like the sounds of piano. They are a particular subset of all possible sound waves, with some specific mathematical characteristics which make them sound bright while gentle at the same time. I've been trying to understand what's the magic inside the sounds of piano from i was maybe 12 till now, but I guess my math is still too bad to actually understand it from a fundamental aspect. 
 
