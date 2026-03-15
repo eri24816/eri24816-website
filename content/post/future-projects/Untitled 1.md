@@ -11,7 +11,7 @@ categories: music
 series:
 summary:
 ---
-Deep-learning based music generation systems often use time-varying latent vectors to plan in high level before generating the actual music. Such structure has two benefits. First, the latent vectors can be a good interface where user control goes in to steer the music. Also the structure may provide an inductive bias that make the model closer to how human process music in a higher level. These benefits relies on how latent code structure close to how human feel music. 
+Deep-learning based music generation systems often use time-varying latent vectors to plan in high level before generating the actual music. Such structure gives two benefits. First, the latent vectors can be a good interface where user control goes in to steer the music. Also the structure may provide an inductive bias that make the model closer to how human process music in a higher level. These benefits relies on how latent code structure close to how human feel music. 
 
 This leads to an interesting problem: how to identify the structure of humans’ feeling to music? I know feelings are subjective, and finding out a shared model across people is a had task. So, I start from listing my own feeling i’ve noticed while listening to music:
 
